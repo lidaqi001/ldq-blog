@@ -86,6 +86,8 @@
 	* [Compose](docker/compose)
 * 版本控制
 	* [Git](git/git)
+* 记录
+	* [为什么myisam查询比innodb快](my/202003251007)
 * 面试题
 	* [linux](interview/linux)
 	* [php](interview/php)
