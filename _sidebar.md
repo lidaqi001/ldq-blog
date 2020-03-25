@@ -1,4 +1,3 @@
-* [docsify](docsify/quickstart)
 * 为什么？
 	* [为什么myisam查询比innodb快？](my/202003251007)
 	* [为什么Redis的操作是原子性的？](my/202003252043)
