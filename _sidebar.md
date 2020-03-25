@@ -1,4 +1,8 @@
 * [docsify](docsify/quickstart)
+* 为什么？
+	* [为什么myisam查询比innodb快？](my/202003251007)
+	* [为什么Redis的操作是原子性的？](my/202003252043)
+	* [为什么Redis这么快？](my/202003252117)
 * [Linux](linux/1.intro)
 	* [文件目录](linux/files)
 	* [内核](linux/2.kernel)
@@ -86,8 +90,6 @@
 	* [Compose](docker/compose)
 * 版本控制
 	* [Git](git/git)
-* 记录
-	* [为什么myisam查询比innodb快](my/202003251007)
 * 面试题
 	* [linux](interview/linux)
 	* [php](interview/php)
