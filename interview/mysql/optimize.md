@@ -27,9 +27,13 @@ select * from user where name like '%a'
 ```
 
 > ##### 以下情况会造成引擎放弃使用索引，而进行全表扫描
+
 1、在 where 子句中使用 != 或 <> 操作符
+
 2、在 where 子句中对字段进行 null 值判断
+
 3、在 where 子句中对字段进行表达式操作
+
 4、在 where 子句中对字段进行函数操作
 ```
 select * from user where name is null
