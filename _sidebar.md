@@ -94,6 +94,7 @@
 	* [php](interview/php)
 	* [mysql](interview/mysql/mysql)
 		* [Mysql优化](interview/mysql/optimize)
+		* [BTree索引](interview/mysql/btree)
 	* [MongoDB](interview/MongoDB)
 	* [redis](interview/redis)
 	* [memcache](interview/memcache)
