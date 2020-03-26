@@ -92,7 +92,8 @@
 * 面试题
 	* [linux](interview/linux)
 	* [php](interview/php)
-	* [mysql](interview/mysql)
+	* [mysql](interview/mysql/mysql)
+		* [Mysql优化](interview/mysql/optimize)
 	* [MongoDB](interview/MongoDB)
 	* [redis](interview/redis)
 	* [memcache](interview/memcache)
