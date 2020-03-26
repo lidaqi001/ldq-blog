@@ -57,22 +57,3 @@ select * from user where login_time > '2018-01-01' order by id des ,username asc
 select * from user where name = '11' order by age desc; //age 没有索引
 ```
 3、where 和 order by 无法形成最左前缀（*对于联合索引*）
-
-> ### BTree索引
-
-- B-Tree
-![image](./b-tree.png)
-
-- B+Tree
-![image](./b+tree.png)
-
-- 主键索引
-![image](./btreePrimaryKey.png)
-
-- 辅助索引（除主键索引外的索引）
-- *辅助索引data域存储相应记录主键的值而不是地址*
-![image](./btreeSecondaryKey.png)
-
-> 参考链接：
-[https://www.cnblogs.com/vianzhang/p/7922426.html](https://www.cnblogs.com/vianzhang/p/7922426.html)
-[https://blog.csdn.net/u013967628/article/details/84305511](https://blog.csdn.net/u013967628/article/details/84305511)
