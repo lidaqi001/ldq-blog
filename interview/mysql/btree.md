@@ -8,7 +8,7 @@
 ![image](./b-tree.png)
 
 > B+Tree
-`
+
 ![image](./b+tree.png)
 
 > 主键索引（聚集索引）
