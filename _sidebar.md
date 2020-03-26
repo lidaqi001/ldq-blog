@@ -8,7 +8,7 @@
 	* [mysql](interview/mysql/mysql)
 		* [Mysql优化](interview/mysql/optimize)
 		* [BTree索引](interview/mysql/btree)
-	<!-- * [MongoDB](interview/MongoDB)
+	* [MongoDB](interview/MongoDB)
 	* [redis](interview/redis)
 	* [memcache](interview/memcache)
 	* [elasticsearch](interview/elasticsearch)
@@ -17,7 +17,7 @@
 	* [datastructure](interview/datastructure)
 	* [designpattern](interview/designpattern)
 	* [socket](interview/socket)
-	* [process](interview/process) -->
+	* [process](interview/process) 
 	* [git](interview/git)
 * [Linux](linux/1.intro)
 	* [文件目录](linux/files)
