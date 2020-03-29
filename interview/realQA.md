@@ -47,7 +47,15 @@ sphinx elasticsearch
 
 ### 6、tcp udp区别 
 
+\   |稳定性 |系统资源   |传输模式   |是否基于连接传输
+---|---|---|---|---
+TCP |保证数据正确性 |较多   |数据流 |基于连接传输
+UDP |可能丢包   |少 |数据报 |无连接
 TCP是稳定传输，稳定，略慢
+
 UDP是不稳定传输，不稳定，速度快
+> ![image](./realQA/tcpStruct.png)
+![image](./realQA/udpStruct.png)
+![image](./realQA/contrast.png)
 
 > 参考：[https://zhuanlan.zhihu.com/p/24860273](https://zhuanlan.zhihu.com/p/24860273)
