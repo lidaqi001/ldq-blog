@@ -174,3 +174,11 @@ innodb_flush_log_at_trx_commit为1表示每一次事务提交或事务外的指�
 
 > 参考链接：[https://www.cnblogs.com/phpper/p/8904169.html](https://www.cnblogs.com/phpper/p/8904169.html)
 [https://blog.csdn.net/hao_yunfeng/article/details/82392261](https://blog.csdn.net/hao_yunfeng/article/details/82392261)
+
+## 13、反爬虫
+
+- 验证码
+- 限制频率（根据IP，Cookie）
+- 根据header头信息过滤（Cookie，Referer，User-Agent...）
+> http header：[https://blog.csdn.net/m0_37730732/article/details/82263609](https://blog.csdn.net/m0_37730732/article/details/82263609)
+- 前端异步加载、懒加载
