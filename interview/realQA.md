@@ -124,3 +124,53 @@ UDP是不稳定传输，不稳定，速度快
 - 抽象工厂模式
 
 > 不要滥用设计，没有最好的，只有最适合的，不要被设计模式限制了想象，没有一成不变的设计
+
+## 12、主从数据库同步延迟问题
+
+- 为什么会延迟？
+
+MySQL的主从复制都是单线程的操作，主库对所有DDL和DML产生的日志写进binlog，由于binlog是顺序写，所以斜率很发哦。Slave的SQLThread线程将主库的DDL和DML操作时间在slave中重放。DML和DDL的IO操作是随机的，不是顺序的，成本高很多。另一方面，由于SQL Thread也是单线程的，当主库的并发较高时，产生的DML数量超过slave的SQL Thread所能处理的速度，或者当slave中有大型query语句产生了所等待，那么延时就产生了。
+
+> 名词解释：
+```
+SQL语言共分为四大类：查询语言DQL，控制语言DCL，操纵语言DML，定义语言DDL。
+
+DQL：可以简单理解为SELECT语句；
+
+DCL：GRANT、ROLLBACK和COMMIT一类语句；
+
+DML：可以理解为CREATE一类的语句；
+
+DDL：INSERT、UPDATE和DELETE语句都是；
+```
+- 常见原因及解决方案
+
+常见原因	|解决方案
+---	|---
+1、网络延时	|1、优化网络
+2、Master/Slave 负载过高，机器性能太低	|2、升级硬件配置
+3、Mysql配置不合理	|3、Slave调整参数，关闭binlog，修改innodb_flush_log_at_trx_commit参数值
+
+> 配置解释：
+```
+sync_binlog的默认值是0，MySQL不会将binlog同步到磁盘，其值表示每写多少binlog同步一次磁盘。
+
+innodb_flush_log_at_trx_commit为1表示每一次事务提交或事务外的指令都需要把日志flush到磁盘。
+```
+
+> 可以做到不延迟吗？
+
+可以，像是：
+
+- 引入中间数据层（推荐：新插入的数据走redis这种第三方，设立失效时间，同步之前取数据走这里）
+- 半同步复制（确保有一个从库同步数据，然后主库在返回）（不推荐：牺牲性能）
+- mysql并行复制  
+	- 社区版5.6中新增  
+	- 并行是指从库多线程apply binlog  
+	- 库级别并行应用binlog
+	-同一个库数据更改还是串行的(5.7版并行复制基于事务组)，设置set global slave_parallel_workers=10;设置sql线程数为10
+
+从数据库方面没有绝对的不延迟（不影响性能的情况下），只能考虑在业务上，去平衡，去引入第三方，增加机器配置。
+
+> 参考链接：[https://www.cnblogs.com/phpper/p/8904169.html](https://www.cnblogs.com/phpper/p/8904169.html)
+[https://blog.csdn.net/hao_yunfeng/article/details/82392261](https://blog.csdn.net/hao_yunfeng/article/details/82392261)
