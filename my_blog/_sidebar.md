@@ -2,7 +2,8 @@
 	* [为什么myisam查询比innodb快？](my/202003251007)
 	* [为什么Redis的操作是原子性的？](my/202003252043)
 	* [为什么Redis这么快？](my/202003252117)
-* [面试题](interview/realQA)
+* [面试问题](interview/realQA)
+* 面试知识
 	* [linux](interview/linux)
 	* [php](interview/php)
 	* [mysql](interview/mysql/mysql)
