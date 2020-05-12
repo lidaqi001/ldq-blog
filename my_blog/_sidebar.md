@@ -3,7 +3,7 @@
 	* [为什么Redis的操作是原子性的？](my/202003252043)
 	* [为什么Redis这么快？](my/202003252117)
 * [面试问题](interview/realQA)
-* 面试知识
+* 面试知识点
 	* [linux](interview/linux)
 	* [php](interview/php)
 	* [mysql](interview/mysql/mysql)

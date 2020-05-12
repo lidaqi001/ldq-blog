@@ -1,50 +1,27 @@
+# MYSQL
 
-### 取3列最大的值
+> ## 数据库三范式
 
-    select greatest(a, b ,c) from test
+- 一：确保每列的原子性（不可再分）
+- 二：非主键列不存在对主键的部分依赖（要求每个表只描述一件事情）
+- 三：满足第二范式，并且表中的列不存在对非主键列的传递依赖
 
-### 索引使用
+> ## 数据库主从复制原理
 
-```
-CREATE TABLE `test` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `a` int(10) unsigned NOT NULL,
-  `b` int(10) unsigned NOT NULL,
-  `c` int(10) unsigned NOT NULL,
-  `d` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_abc` (`a`,`b`,`c`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+- ①：主库的更新事件（update、insert、delete）被写到binlog
+- ②：主库创建一个binlog dump thread线程，把binlog的内容发送到从库
+- ③：从库创建一个I/O线程，读取主库传过来的binlog内容并写入到relay log
+- ④：从库还会创建一个SQL线程，从relay log里面读取内容写入到从库
 
-EXPLAIN select * from  test where id =1 and a = 1
-EXPLAIN select * from  test where id =1 and a > 1
+> ## 主从库复制方式分类
 
-possible_keys: PRIMARY  key: PRIMARY key_len: 4
+- 一、异步复制（默认）：主库写入binlog日志后即可成功返回客户端，无需等待binlog日志传递给从库的过程，但是一旦主库宕机，就有可能出现丢失数据的情况。
+- 二：半同步复制（5.5版本之后）（安装半同步复制插件）：确保从库接收完成主库传递过来的binlog内容已经写入到自己的relay log（传送log）后才会通知主库上面的等待线程。如果等待超时，则关闭半同步复制，并自动转换为异步复制模式，知道至少有一台从库通知主库已经接收到binlog信息为止。
 
-一个范围，一个精确
-EXPLAIN select * from  test where id in (1,2) and a = 1
-EXPLAIN select * from  test where id > 1 and a = 1
-EXPLAIN select * from  test where id BETWEEN 1 and 2 and a = 1 
+> ## 存储引擎
 
-possible_keys: PRIMARY,idx_abc  key: idx_abc key_len: 4
+- 一：Myisam是MySQL默认的存储引擎，不支持事务，行级锁，外键；插入更新需要锁表，效率低，查询速度快，Myisam使用的是非聚集索引
+- 二：Innodb支持事务，底层为B+树实现，适合处理多重并发更新操作，普通select都是快照读，快照读不加锁。InnoDB使用的是聚集索引。
 
-两个都是范围，选择最优的
-EXPLAIN select * from  test where id in (1,2) and a > 1
-possible_keys: PRIMARY,idx_abc  key: PRIMARY key_len: 4
+> ## 聚集索引
 
-EXPLAIN select * from  test where id > 1 and a = 1 and b > 1
-possible_keys: PRIMARY,idx_abc  key: idx_abc key_len: 4
-
-// 复合索引，使用索引必须第一列用到索引
-EXPLAIN select * from  test where a > 1 and b = 1
-possible_keys: idx_abc  key:  key_len: 
-
-```
-
-### AUTO_INCREMENT
-
-```
-当前auto_increment=6，修改为2不会重置，依然为6
-alter TABLE test auto_increment=2
-select auto_increment from information_schema.tables where table_schema='test' and table_name='test';
-```
