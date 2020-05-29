@@ -2,6 +2,9 @@
 	* [为什么myisam查询比innodb快？](my/202003251007)
 	* [为什么Redis的操作是原子性的？](my/202003252043)
 	* [为什么Redis这么快？](my/202003252117)
+* 算法与数据结构
+	* [arithmetic(算法)](my/arithmetic)
+	* [dataStruct(数据结构)](my/dataStruct)
 * [面试问题](interview/realQA)
 * 面试知识点
 	* [linux](interview/linux)
