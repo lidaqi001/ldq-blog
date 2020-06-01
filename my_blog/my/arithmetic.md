@@ -3,7 +3,7 @@
 > ## **排序算法**
 
 > 冒泡排序
-```
+```php
 function bubble(&$nums)
 {
     if (!count($nums))
@@ -34,17 +34,17 @@ print_r($nums);
 ```
 
 > 插入排序
-```
+```php
 
 ```
 
 > 选择排序
-```
+```php
 
 ```
 
 > 快速排序
-```
+```php
 function quick(&$nums)
 {
     qsort($nums, 0, count($nums) - 1);
@@ -93,8 +93,7 @@ print_r($nums);
 > ## **查找算法**
 
 > 二分查找
-```
-
+```php
 function dichotomy($nums, $search)
 {
     $begin_index = 0;
@@ -138,7 +137,7 @@ print_r($res);
 
 > 二叉树遍历
 
-```
+```php
 // 二叉链表节点
 class Node
 {
@@ -196,7 +195,7 @@ function postOrderTraverse($node)
 ```
 
 > 二叉排序树
-```
+```php
 <?php
 class Node
 {
@@ -354,7 +353,7 @@ print_r($tree->getTree());
     1、实现起来比较复杂 
     2、维护成本高（因其每次新增或删除节点时，都要判断剩下的节点构成的二叉排序树是否满足平衡二叉树的要求，如果不满足需要做相应的左旋右旋处理）
 
-```
+```php
 class AVLTree
 {
     /**
@@ -571,7 +570,7 @@ class AVLTree
 ```
 
 测试代码
-```
+```php
 $avlTree = new AVLTree();
 $avlTree->insert(3);
 $avlTree->insert(2);
