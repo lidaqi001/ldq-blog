@@ -647,10 +647,13 @@ print_r($avlTree->getTree());
 
 但是这里有一个问题，每次从堆顶删除元素后，需要从子节点中取值补齐堆顶，依次类推，直到叶子节点，就会致使存储堆的数组出现「空洞」：
 ```
+
 ![image](./images/arithmetic/heap-sort-1.png)
+
 ```text
 解决办法是将数组中的最后一个元素（最右边的叶子节点）移到堆顶，再重新对其进行堆化：
 ```
+
 ![image](./images/arithmetic/heap-sort-2.png)
 
 ```php
