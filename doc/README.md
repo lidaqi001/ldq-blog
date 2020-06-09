@@ -16,7 +16,7 @@ docs
 </style>
 
 
-<a target="blank"  href="http://www.ldqsdy.com/">My_blog</a>
+<a target="blank"  href="https://www.ldqsdy.com/">My_blog</a>
 <br/>
 <a target="blank"  href="http://alycan.com/">友链=>alycan</a>
 <br/>
