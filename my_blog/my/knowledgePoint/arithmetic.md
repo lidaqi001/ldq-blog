@@ -618,7 +618,7 @@ print_r($avlTree->getTree());
 
 下面是一个典型的红黑树示例：
 ```
-![image](./images/arithmetic/red-black-tree.jpg)
+![image](./my/images/arithmetic/red-black-tree.jpg)
 ```text
 这些约束保证了红黑树的关键特性：从根节点到叶子节点的最长的可能路径不多于最短的可能路径长度的两倍（每条路径红黑相间，且黑色节点数目相同，所以最短的路径上是两个黑色节点，相应的，此时最长路径节点一定是黑-红-黑-红，正好是其两倍），从而保证红黑树无论怎么插入、删除节点大致上也是平衡的。
 
@@ -650,7 +650,7 @@ print_r($avlTree->getTree());
 下面我们就来看如何在堆中插入新节点，以大顶堆为例，从叶子结点插入，如果比父级元素大，则与父级元素交换位置，依次类推，直到到达根节点（小顶堆恰好相反）： 
 ```
 
-![image](./images/arithmetic/insert-heap.png)
+![image](./my/images/arithmetic/insert-heap.png)
 
 - 堆排序
 
@@ -660,13 +660,13 @@ print_r($avlTree->getTree());
 但是这里有一个问题，每次从堆顶删除元素后，需要从子节点中取值补齐堆顶，依次类推，直到叶子节点，就会致使存储堆的数组出现「空洞」：
 ```
 
-![image](./images/arithmetic/heap-sort-1.png)
+![image](./my/images/arithmetic/heap-sort-1.png)
 
 ```text
 解决办法是将数组中的最后一个元素（最右边的叶子节点）移到堆顶，再重新对其进行堆化：
 ```
 
-![image](./images/arithmetic/heap-sort-2.png)
+![image](./my/images/arithmetic/heap-sort-2.png)
 
 ```php
 <?php
