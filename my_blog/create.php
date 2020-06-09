@@ -24,9 +24,8 @@ function getTitle(&$title = '')
     }
 }
 
-function createFile($title, $time, &$path)
+function createFile($title, $time, $path)
 {
-    $path = './' . date('Ymdhis', $time) . '.md';
     writeFile($path, function () use ($title, $time) {
         return sprintf(
             "# %s\n\r> %s",
@@ -58,6 +57,7 @@ $time = time();
 echo 'DateTime: ' . date('Y-m-d H:i:s', $time) . PHP_EOL;
 
 // 生成文件
+$path = './my/' . date('Ymdhis', $time) . '.md';
 createFile($title, $time, $path);
 
 // 同步_sidebar.md
