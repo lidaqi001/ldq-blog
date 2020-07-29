@@ -251,7 +251,9 @@ dispatch_mode = 5
 文档分词（自带的英文分词器，IK中文分词器，等等。。）
 
 倒排索引（检索顺序：Term Index -> Term Dictionary -> Losting List）
+
 - 倒排索引名词解释：
+
 > Term（单词）：一段文本经过分析器分析以后就会输出一串单词，这一个一个的就叫做Term（直译为：单词）
 
 > Term Dictionary（单词字典）：顾名思义，它里面维护的是Term，可以理解为Term的集合
