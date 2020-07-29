@@ -183,6 +183,16 @@ innodb_flush_log_at_trx_commit为1表示每一次事务提交或事务外的指�
 > http header：[https://blog.csdn.net/m0_37730732/article/details/82263609](https://blog.csdn.net/m0_37730732/article/details/82263609)
 - 前端异步加载、懒加载
 
+
+> Swoole简介
+swoole是一个php扩展，使用纯c语言开发。
+swoole是一个网络通信和异步io的引擎，一个基础库。
+为php提供了之前没有的一些高级特性，如：异步，并行，TCP/UDP网络编程，常驻内存
+
+最大的亮点是协程（即用户态线程）
+和多线程不同，系统切换线程/进程，都会有损耗开销，而且是时间片切换（即每个任务执行一段时间就切换到另一个任务），
+而协程则是在单线程内，遇到阻塞即挂起协程，把cpu让给其他协程执行任务，提升单线程的cpu资源利用率，从而提高性能。
+
 ## 14、swoole网络模型
 
 Master-Mannger-worker
@@ -233,3 +243,25 @@ dispatch_mode = 5
 > Stream 模式
 
 使用类似于php-fpm的Unix Socket短连接方式通信，Worker进程会变成Leader-Follower模式，争抢任务。
+
+## 16、elasticsearch 全文搜索，一切设计都是为了提高搜索的性能
+
+分布式部署（多节点）
+
+文档分词（自带的英文分词器，IK中文分词器，等等。。）
+
+倒排索引（检索顺序：Term Index -> Term Dictionary -> Losting List）
+
+> Term（单词）：一段文本经过分析器分析以后就会输出一串单词，这一个一个的就叫做Term（直译为：单词）
+
+> Term Dictionary（单词字典）：顾名思义，它里面维护的是Term，可以理解为Term的集合
+
+> Term Index（单词索引）：为了更快的找到某个单词，我们为单词建立索引
+
+> Posting List（倒排列表）：倒排列表记录了出现过某个单词的所有文档的文档列表及单词在该文档中出现的位置信息，每条记录称为一个倒排项(Posting)。根据倒排列表，即可获知哪些文档包含某个单词。（PS：实际的倒排列表中并不只是存了文档ID这么简单，还有一些其它的信息，比如：词频（Term出现的次数）、偏移量（offset）等，可以想象成是Python中的元组，或者Java中的对象）
+（PS：如果类比现代汉语词典的话，那么Term就相当于词语，Term Dictionary相当于汉语词典本身，Term Index相当于词典的目录索引）
+
+参考文章：
+
+http://note.youdao.com/noteshare?id=4367bc2bc4f4e145675ece8bf7002dce&sub=wcp1596004570843753
+http://note.youdao.com/noteshare?id=94ba59880cbeee68c0732fb6890a5eb8&sub=wcp1596002888977515
