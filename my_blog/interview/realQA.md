@@ -246,16 +246,16 @@ dispatch_mode = 5
 
 ## 16、elasticsearch 全文搜索，一切设计都是为了提高搜索的性能
 
-分布式部署（多节点）
+- 分布式部署（多节点）
 
-文档分词（分词器）
+- 文档分词（分词器）
 > es自带的英文分词器 (这里列出常用的几个)：Standard Analyzer、Simple Analyzer、whitespace Analyzer
 >
 > 中文分词器：IK(最常用)、smartCN、HanLP
 
-倒排索引（检索顺序：Term Index -> Term Dictionary -> Losting List）
+- 倒排索引（检索顺序：Term Index -> Term Dictionary -> Losting List）
 
-- 倒排索引名词解释：
+	- 倒排索引名词解释：
 
 > Term（单词）：一段文本经过分析器分析以后就会输出一串单词，这一个一个的就叫做Term（直译为：单词）
 
