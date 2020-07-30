@@ -248,9 +248,10 @@ dispatch_mode = 5
 
 分布式部署（多节点）
 
-文档分词
-
-（自带的英文分词器 (这里列出常用的几个)：Standard Analyzer、Simple Analyzer、whitespace Analyzer，中文分词器：IK(最常用)、smartCN、HanLP）
+文档分词（分词器）
+> es自带的英文分词器 (这里列出常用的几个)：Standard Analyzer、Simple Analyzer、whitespace Analyzer
+>
+> 中文分词器：IK(最常用)、smartCN、HanLP
 
 倒排索引（检索顺序：Term Index -> Term Dictionary -> Losting List）
 
