@@ -3,7 +3,8 @@
 	* [为什么Redis的操作是原子性的？](./my/why/202003252043)
 	* [为什么Redis这么快？](./my/why/202003252117)
 	* [什么是悲观锁？什么是乐观锁？](./my/why/20200604060049.md)
-* [知识点](./my/mindmap/mindmap)
+* 知识点
+	* [脑图](./my/mindmap/mindmap)
 	* 算法与数据结构
 		* [arithmetic(算法)](./my/knowledgePoint/arithmetic)
 		* [dataStruct(数据结构)](./my/knowledgePoint/dataStruct)
