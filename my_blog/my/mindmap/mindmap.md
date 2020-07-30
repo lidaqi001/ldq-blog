@@ -1,5 +1,15 @@
-> # **脑图汇总**
+# **脑图汇总**
 
+## 自己整理
+> Redis
+
+![Redis](./redis_my.png)
+
+> Mysql
+
+![Mysql](./mysql_my.png)
+
+## 摘自网上
 > redis知识点
 
 ![redis知识点](./redis.jpg)
