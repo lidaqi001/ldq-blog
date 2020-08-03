@@ -285,6 +285,6 @@ http://note.youdao.com/noteshare?id=4367bc2bc4f4e145675ece8bf7002dce&sub=wcp1596
 
 http://note.youdao.com/noteshare?id=94ba59880cbeee68c0732fb6890a5eb8&sub=wcp1596002888977515
 
-## Dockerfile
+## Dockerfile常用命令
 
-[跳转查看](./docker#Dockerfile命令)
+[点击查看](./interview/docker#Dockerfile命令)
