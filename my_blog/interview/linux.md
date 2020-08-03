@@ -1,6 +1,6 @@
-## linux 常见面试题
+# linux 常见面试题
 
-### 命令
+## 命令
 
 1.查看某个进程的信息
 
@@ -14,7 +14,7 @@
     查找小于5M的文件
     find . -type f -size -5m
 
-### 文件结构
+## 文件结构
 
 1.硬链接和软连接区别
 
@@ -24,4 +24,4 @@
     软连接(Symbolic Link)inode节点的数据项保存原文件路径
     ln -s /usr/local/nginx/sbin/nginx /usr/local/bin/nginx
 
-### 
+##
