@@ -1,6 +1,6 @@
 # 真实面试记录
 
-## 1、redis hash 应用场景 
+## Redis hash 应用场景 
 > hash类型是一个string类型的field和value的映射表，最大存储容量2的32次方 - 1 
 ```
 key => [
@@ -10,7 +10,7 @@ key => [
 ```
 > 参考：[https://www.cnblogs.com/pangzizhe/p/10657801.html](https://www.cnblogs.com/pangzizhe/p/10657801.html)
 
-## 2、nginx 和 apache的区别 
+## Nginx 和 Apache的区别 
 ```
 nginx 异步，抗高并发，轻量级，高性能，负载均衡，配置简洁，高度模块化，反向代理
 apache 阻塞，并发较差，稳定，丰富的特性和组件，成熟的社区，
@@ -18,7 +18,17 @@ apache 阻塞，并发较差，稳定，丰富的特性和组件，成熟的社�
 *这里有一个疑问：‘网上经常看到说apache动态请求厉害，nginx更适合静态页面’，为什么呢？*
  > 参考：[https://www.cnblogs.com/ycgo/p/10915965.html](https://www.cnblogs.com/ycgo/p/10915965.html)
 
-## 3、mysql慢查询如何查找 
+## Mysql为什么使用b+树
+
+原因就是为了减少磁盘io次数
+
+b+树非叶子节点只存储`索引范围和指向下一级索引（或者叶子节点）的地址`就行了，
+
+不需要存完整的数据，所以`占用空间小`，直到找到叶子节点才加载进来整行数据。
+
+并且`叶子节点间有链表结构`，可以快速定位数据，只需要找到首尾叶子节点，就能把所有数据取出来了
+
+## Mysql慢查询如何查找 
 
 设置几个配置项可以捕获并记录抵消SQL语句
 ```
@@ -33,10 +43,10 @@ apache 阻塞，并发较差，稳定，丰富的特性和组件，成熟的社�
 ```
 > 参考：[https://www.cnblogs.com/qmfsun/p/4844472.html](https://www.cnblogs.com/qmfsun/p/4844472.html)
 
-## 4、全文搜索 
-sphinx elasticsearch
+## 全文搜索 
+Sphinx Elasticsearch
 
-## 5、mysql大数据量加索引 
+## Mysql大数据量加索引 
 根据网上的资料，我总结一下：
 将要加字段或索引的表结构复制一份，然后在空闲时，将原有数据导出到新表
 不过这里我有一个想法，这种情况会突然出现在线上一个很大流量的功能上面吗？
@@ -45,7 +55,7 @@ sphinx elasticsearch
 
 > 参考：[https://blog.csdn.net/codererer/article/details/102806646](https://blog.csdn.net/codererer/article/details/102806646)
 
-## 6、tcp udp区别 
+## Tcp Udp区别 
 
 \   |稳定性 |系统资源   |传输模式   |是否基于连接传输
 ---|---|---|---|---
@@ -61,7 +71,7 @@ UDP是不稳定传输，不稳定，速度快
 
 > 参考：[https://zhuanlan.zhihu.com/p/24860273](https://zhuanlan.zhihu.com/p/24860273)
 
-## 7、php的垃圾回收
+## php的垃圾回收
 
 1、一个变量的refcount（引用计数）减少到0，这个变量不属于垃圾。
 
@@ -71,7 +81,7 @@ UDP是不稳定传输，不稳定，速度快
 
 4、若不为0，那么恢复引用次数，并从缓冲区移出。
 
-## 8、php请求的执行流程
+## php请求的执行流程
 
 1、模块初始化阶段
 
@@ -83,7 +93,7 @@ UDP是不稳定传输，不稳定，速度快
 
 5、模块关闭阶段
 
-## 9、laravel的请求流程
+## Laravel的请求流程
 
 1、初始化容器
 
@@ -97,7 +107,7 @@ UDP是不稳定传输，不稳定，速度快
 
 5、response
 
-## 10、Git回滚代码到某个commit
+## Git回滚代码到某个commit
 
 回退命令：
 ```
@@ -111,7 +121,7 @@ UDP是不稳定传输，不稳定，速度快
 ~$ git reset --hard commit_id	
 ```
 
-## 11、设计模式
+## 设计模式
 
 > 设计模式的初衷是什么？
 
@@ -125,7 +135,7 @@ UDP是不稳定传输，不稳定，速度快
 
 > 不要滥用设计，没有最好的，只有最适合的，不要被设计模式限制了想象，没有一成不变的设计
 
-## 12、主从数据库同步延迟问题
+## 主从数据库同步延迟问题
 
 - 为什么会延迟？
 
@@ -175,7 +185,7 @@ innodb_flush_log_at_trx_commit为1表示每一次事务提交或事务外的指�
 > 参考链接：[https://www.cnblogs.com/phpper/p/8904169.html](https://www.cnblogs.com/phpper/p/8904169.html)
 [https://blog.csdn.net/hao_yunfeng/article/details/82392261](https://blog.csdn.net/hao_yunfeng/article/details/82392261)
 
-## 13、反爬虫
+## 反爬虫
 
 - 验证码
 - 限制频率（根据IP，Cookie）
@@ -193,7 +203,7 @@ swoole是一个网络通信和异步io的引擎，一个基础库。
 和多线程不同，系统切换线程/进程，都会有损耗开销，而且是时间片切换（即每个任务执行一段时间就切换到另一个任务），
 而协程则是在单线程内，遇到阻塞即挂起协程，把cpu让给其他协程执行任务，提升单线程的cpu资源利用率，从而提高性能。
 
-## 14、swoole网络模型
+## Swoole网络模型
 
 Master-Mannger-worker
 
@@ -204,7 +214,7 @@ Master-Mannger-worker
 
 > [https://wiki.swoole.com/#/server/init?id=reactor%E7%BA%BF%E7%A8%8B](https://wiki.swoole.com/#/server/init?id=reactor%E7%BA%BF%E7%A8%8B)
 
-## 15、swoole进程通信
+## Swoole进程通信
 
 > 投递任务
 
@@ -244,7 +254,7 @@ dispatch_mode = 5
 
 使用类似于php-fpm的Unix Socket短连接方式通信，Worker进程会变成Leader-Follower模式，争抢任务。
 
-## 16、elasticsearch 全文搜索，一切设计都是为了提高搜索的性能
+## Elasticsearch 全文搜索，一切设计都是为了提高搜索的性能
 
 - 分布式部署（多节点）
 
