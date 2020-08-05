@@ -123,14 +123,14 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     !README.md
     ```
 
-- FROM
+- `FROM`
 
     FROM指令初始化一个新的build stage,并且是后面指令的基础镜像。
     ```
     FROM <image>[:<tag>] [AS <name>]
     ```
 
-- 理解ARG和FROM的交互
+- `理解ARG和FROM的交互`
 
     FROM支持ARG指令申明的变量，ARG要在FROM之前申明，
     ```
@@ -142,7 +142,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     CMD  /code/run-extras
     ```
 
-- RUN
+- `RUN`
 
     RUN支持2种格式：
     ```
@@ -150,7 +150,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     RUN ["executable", "param1", "param2"] #exec格式，必须使用“”，不能使用单引号
     ```
 
-- CMD
+- `CMD`
 
     CMD指令有3种格式：
     ```
@@ -162,7 +162,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
 
     RUN和CMD的区别：RUN会在build过程中执行并提交结果；CDM在build过程中不执行。
 
-- LABEL
+- `LABEL`
 
     LABEL指令添加metedata为镜像。一个LABEL是一对key-value。LABEL一般 位于FROM之后，不然会报错。
     ```
@@ -173,7 +173,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     LABEL maintainer="SvenDowideit@home.org.au"
     ```
 
-- MAINTAINER
+- `MAINTAINER`
 
     指令代表生成镜像的作者。使用LABEL指令替代会更加灵活，可以使用LABEL替代。
     MAINTAINER指令代表生成镜像的作者。使用LABEL指令替代会更加灵活，可以使用LABEL替代。
@@ -181,7 +181,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     MAINTAINER <name>
     ```
 
-- EXPOSE
+- `EXPOSE`
 
     EXPOSE指令是为了通知docker,容器在运行时监听指定的端口。你能指定是tcp还是udp协议，默认是tcp协议。
     ```
@@ -190,7 +190,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     ```
     在使用docker run -P时，将暴露所有EXPOSE port到主机的随机端口；
 
-- ENV
+- `ENV`
 
     ENV指令设置环境变量，有2种格式：
     ```
@@ -198,7 +198,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     ENV <key>=<value> ... #一次可以设置多个变量
     ```
 
-- ADD
+- `ADD`
 
     ADD指令有2种格式：
     ```
@@ -233,7 +233,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     假如<src>是URL且<dest>有/结尾,src的文件拷贝到dest/filename
     ```
 
-- COPY
+- `COPY`
 
     有2种格式
     ```
@@ -242,7 +242,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     【注】：dokcer build如果使用stdin,没有build context，因此COPY不能使用。
     ```
 
-- ENTRYPOINT
+- `ENTRYPOINT`
 
     ENTRYPOINT可以配置一个可以执行的容器。
 
@@ -258,7 +258,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
         ENTRYPOINT exec top -b
     ```
 
-    - 理解CMD和ENTRYPOINT怎样互相作用
+- `理解CMD和ENTRYPOINT怎样互相作用`
 
     ```
     dockerfile至少有一个CMD或者ENTRYPOINT命令
@@ -272,14 +272,13 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
 
     【注】：假如CMD指令在基础镜像定义，配置ENTRYPOINT将会重置CMD为空。在这个场景，需要在当前镜像为CMD设置一个值。
 
-- VOLUME
+- `VOLUME`
 
     ```
     VOLUME指令用指定名称创建一个挂载点，并且能持有来自本地主机或者其他容器挂载的volume。详细请见：https://docs.docker.com/storage/volumes/
     ```
 
-- USER
-
+- `USER`
     ```
     USER <user>[:<group>] 
     USER <UID>[:<GID>]
@@ -296,7 +295,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     USER patrick
     ```
 
-- WORKDIR
+- `WORKDIR`
 
     WORKDIR指令是为了设置dockerfile后续执行RUN\CMD\ENTRYPOINT,COPY和ADD指令的工作路径。
     ```
@@ -312,7 +311,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     ```
     pwd的结果为：/path/$DIRNAME
 
-- ARG
+- `ARG`
 
     ARG指令能定义一个变量，用户能在build过程中传递参数通过docker build --build-arg <varname>=<value>。一个dockerfile可以包含一到多个ARG。如下：
 
@@ -366,7 +365,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     RUN echo "I'm building for $TARGETPLATFORM"
     ```
 
-- ONBUILD
+- `ONBUILD`
 
     ONBUIL指令用于作为一个触发器，当被做为基础镜像时会执行触发器指令。可以用到下面场景，一个镜像作为后面镜像的基础镜像，前面的镜像提供环境（如：python运行环境），后面的镜像可以通过使用ADD、RUN等指令完成代码的添加和执行构建脚本等，如下使用：
 
@@ -375,7 +374,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     ONBUILD RUN /usr/local/bin/python-build --dir /app/src
     ```
 
-- STOPSIGNAL
+- `STOPSIGNAL`
 
     STOPSIGNAL指令是设置一个信号用于发送给容器并退出;
 
@@ -384,7 +383,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     STOPSIGNAL SIGKILL
     ```
 
-- HEALTHCHECK
+- `HEALTHCHECK`
 
     HEALTHCHECK有2种格式：
 
@@ -418,7 +417,7 @@ docker build会运行一个docker daemon，它不是一个命令行。build过�
     CMD curl -f http://localhost/ || exit 1
     ```
 
-- SHELL
+- `SHELL`
 
     SHELL指令用于重写默认的shell格式的命令。如在linux是["/bin/sh", "-c"]，在Windows是["cmd", "/S", "/C"]。SHELL指令可以覆盖之前的SHELL指令，影响后续执行的指令。
 
