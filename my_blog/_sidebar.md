@@ -1,3 +1,4 @@
+* [面试问题](./interview/realQA)
 * 十万个为什么？
 	* [为什么myisam查询比innodb快？](./my/why/202003251007)
 	* [为什么Redis的操作是原子性的？](./my/why/202003252043)
@@ -8,7 +9,6 @@
 	* 算法与数据结构
 		* [arithmetic(算法)](./my/knowledgePoint/arithmetic)
 		* [dataStruct(数据结构)](./my/knowledgePoint/dataStruct)
-* [面试问题](./interview/realQA)
 * 面试知识点
 	* [linux](./interview/linux)
 	* [php](./interview/php)
