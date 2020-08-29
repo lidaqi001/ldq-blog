@@ -288,3 +288,9 @@ http://note.youdao.com/noteshare?id=94ba59880cbeee68c0732fb6890a5eb8&sub=wcp1596
 ## Dockerfile常用命令
 
 [点击查看](./interview/docker#Dockerfile命令)
+
+## Dockerfile指令  《cmd 和 ENTRYPOINT的区别》
+
+[CMD和ENTRYPOINT的区别](https://blog.csdn.net/qq_36441027/article/details/103994787)
+
+[Dockerfile 中的 CMD 与 ENTRYPOINT](https://blog.csdn.net/weixin_34174422/article/details/85972365)
