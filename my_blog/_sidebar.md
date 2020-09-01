@@ -1,4 +1,5 @@
 * [面试问题](./interview/realQA)
+* [杂记](./my/daily/daily)
 * 十万个为什么？
 	* [为什么myisam查询比innodb快？](./my/why/202003251007)
 	* [为什么Redis的操作是原子性的？](./my/why/202003252043)
