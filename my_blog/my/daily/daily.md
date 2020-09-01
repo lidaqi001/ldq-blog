@@ -1,8 +1,6 @@
 > ## 2020.9.1
 
-- 报错信息
-
-    Temporary failure in name resolution
+- Temporary failure in name resolution 错误解决方法
 
 ```
 # 问题产生：
