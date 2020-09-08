@@ -6,6 +6,21 @@
 - 二：非主键列不存在对主键的部分依赖（要求每个表只描述一件事情）
 - 三：满足第二范式，并且表中的列不存在对非主键列的传递依赖
 
+> ## mysqld启动命令
+- 常用命令解析
+    - --basedir：MySQL安装目录
+    - --datadir：MySQL数据存放目录
+    - --plugin-dir：MySQL插件目录
+    - --user：指定用户运行MySQL
+    - --log-error：指定错误日志地址
+    - --open-files-limit：mysqld进程能使用的最大文件描述(FD)符数量
+    - --pid-file：指定mysqld进程pid存放地址
+    - --socket：指定socket文件存放地址
+    - --port：指定进程运行端口号
+    ```
+    mysqld --basedir=/usr/lib/mysql --datadir=/data/mysql/data --plugin-dir=/usr/lib/mysql/plugin --user=mysql --log-error=/data/mysql/data/mysql.err --open-files-limit=65535 --pid-file=/data/mysql/data/mysql.pid --socket=/tmp/mysqld.sock --port=3306
+    ```
+
 > ## 数据库主从复制原理
 
 ![流程图](../../my/daily/images/ms.jpg)

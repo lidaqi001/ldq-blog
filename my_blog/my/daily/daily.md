@@ -1,3 +1,6 @@
+> ## 2020.9.8-MySQLd启动命令
+- [启动命令](../../interview/mysql/mysql?id=mysqld启动命令)
+
 > ## 2020.9.7-MySQL主从
 
 - MySQL主从服务器配置
