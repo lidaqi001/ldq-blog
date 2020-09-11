@@ -1,3 +1,6 @@
+> ## 2020.9.11-redis主从配置
+- [进去看看](../../interview/redis?id=主从配置)
+
 > ## 2020.9.9-docker环境下elasticsearch集群部署（单机模拟）
 - [进去看看](../../interview/elasticsearch?id=docker环境下集群部署（单机模拟）)
 
