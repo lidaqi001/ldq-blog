@@ -1,3 +1,6 @@
+> ## 2020.9.14-redis哨兵模式
+- [进去看看](../../interview/redis?id=哨兵配置)
+
 > ## 2020.9.11-redis主从配置
 - [进去看看](../../interview/redis?id=主从配置)
 
