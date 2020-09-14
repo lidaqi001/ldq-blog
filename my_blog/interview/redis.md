@@ -59,6 +59,7 @@
     docker run -d -p 6378:6379 --net redis --ip 172.21.0.3 -v /root/rs/redis2.conf:/usr/local/etc/redis/redis.conf -v /root/rs/data2:/data --name rs2 redis redis-server /usr/local/etc/redis/redis.conf
     ```
 
+
 - 4、验证
 
     ```
@@ -77,6 +78,23 @@
     // 像上面这样显示就代表连接上了
     // 向master写入数据查看slave是否同步数据
     ```
+
+> ## 主从是如何同步数据的
+```
+1、启动一个slave节点
+2、slave节点发送一个psync命令给master节点
+
+如果slave节点第一次连接到master节点，会触发一个全量复制，
+master就会启动一个线程，生成RDB快照，还会把新的写请求都缓存在内存中，
+RDB文件生成后，master会将这个RDB发送给slave，
+slave节点拿到RDB文件后险些金本地磁盘，然后加载进内存，
+然后master接着把之前缓存的写请求，都发送给slave，
+后面就是master每次将写请求发送给slave。
+```
+```
+注意：
+    RDB快照的数据生成的时候，缓存区也同时开始接受新请求
+```
 
 > ## 哨兵配置
 
@@ -142,4 +160,21 @@
 
 > ## 哨兵选举策略
 
-> ## 主从是如何同步数据的
+- 参考链接：
+    - [https://zhuanlan.zhihu.com/p/95678924](https://zhuanlan.zhihu.com/p/95678924)
+    - [https://blog.csdn.net/xujiamin0022016/article/details/93876870](https://blog.csdn.net/xujiamin0022016/article/details/93876870)
+
+- 两个基本概念
+    - S_DOWN（subjectively down）
+    ```
+    即主观宕机，如果一个哨兵它自己觉得master宕机了，就是主观宕机
+    ```
+    - O_DOWN（objectively down）
+    ```
+    即客观宕机，如果多个sentinel实例都认为一个master宕机了，则为客观宕机。
+
+    即多个sentinel实例都认为master处于"SDOWN"状态，
+    那么此时master将处于ODOWN，
+    ODOWN可以简单理解为master已经被集群确定为"不可用",
+    将会开启failover.
+    ```
