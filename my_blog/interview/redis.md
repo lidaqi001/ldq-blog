@@ -178,3 +178,19 @@ slave节点拿到RDB文件后险些金本地磁盘，然后加载进内存，
     ODOWN可以简单理解为master已经被集群确定为"不可用",
     将会开启failover.
     ```
+
+- 步骤
+    - 1、使用下面条件筛选备选node
+
+        - slave节点状态不处于（S_DOWN，O_DOWN，DISCONNECTED）
+        - 最近一次ping应答时间不超过5倍ping的间隔（假如ping的间隔为1秒，则最近一次应答延迟不应超过5秒，sentinel默认为1秒）
+        - info_refresh应答不超过3倍info_refresh的间隔（原理同2,redis sentinel默认为10秒）
+        - slave节点与master节点失去联系的时间不能超过（ (now - master->s_down_since_time) + (master->down_after_period * 10)）。总体意思是说，slave节点与master同步太不及时的（比如新启动的节点），不应该参与被选举
+        - Slave priority不等于0（这个是在配置文件中指定，默认配置为100）。
+
+    - 2、从备选node中，按照如下顺序选择新的master
+
+        - 按照slave优先级进行排序，slave priority越低，优先级就越高。
+        - 看replica offset，哪个slave复制了越多的数据，offset越靠后，优先级就越高。
+        - 较小的runid（每个redis实例，都会有一个runid，通常是一个40为的随机字符串，在启动时设置，重复概率非常小）
+        - 以上条件都不足以区分出唯一的节点，则会看那个slave节点处理之前master发送的command多，就选谁
