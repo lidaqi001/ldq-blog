@@ -157,26 +157,26 @@ node.name：节点名，默认随机指定一个name列表中名字。集群中n
 index.number_of_shards: 默认的配置是把索引分为5个分片
 
 index.number_of_replicas:设置每个index的默认的冗余备份的分片数，默认是1
-```
 
     - 通过 index.number_of_shards，index.number_of_replicas默认设置索引将分为5个分片，每个分片1个副本，共10个结点。
     - 禁用索引的分布式特性，使索引只创建在本地主机上：
     - index.number_of_shards: 1
     - index.number_of_replicas: 0
     - 但随着版本的升级 将不在配置文件中配置而实启动ES后，再进行配置
-    
+```
+
 ```
 bootstrap.memory_lock: true 当JVM做分页切换（swapping）时，ElasticSearch执行的效率会降低，推荐把ES_MIN_MEM和ES_MAX_MEM两个环境变量设置成同一个值，并且保证机器有足够的物理内存分配给ES，同时允许ElasticSearch进程锁住内存
 
 network.bind_host: 设置可以访问的ip,可以是ipv4或ipv6的，默认为0.0.0.0，这里全部设置通过
 
 network.publish_host:设置其它结点和该结点交互的ip地址，如果不设置它会自动判断，值必须是个真实的ip地址
-```
 
     - 同时设置bind_host和publish_host两个参数可以替换成network.host
     - network.bind_host: 192.168.9.219
     - network.publish_host: 192.168.9.219
     - =>network.host: 192.168.9.219
+```
 
 ```
 http.port:设置对外服务的http端口，默认为9200
