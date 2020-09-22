@@ -1,3 +1,6 @@
+> ## 2020.9.15-redis哨兵选举master策略
+- [进去看看](../../interview/redis?id=哨兵选举策略)
+
 > ## 2020.9.14-redis哨兵模式
 - [进去看看](../../interview/redis?id=哨兵配置)
 
