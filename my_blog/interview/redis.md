@@ -80,6 +80,7 @@
     ```
 
 > ## 主从是如何同步数据的
+
 ```
 1、启动一个slave节点
 2、slave节点发送一个psync命令给master节点
@@ -194,3 +195,148 @@ slave节点拿到RDB文件后险些金本地磁盘，然后加载进内存，
         - 看replica offset，哪个slave复制了越多的数据，offset越靠后，优先级就越高。
         - 较小的runid（每个redis实例，都会有一个runid，通常是一个40为的随机字符串，在启动时设置，重复概率非常小）
         - 以上条件都不足以区分出唯一的节点，则会看那个slave节点处理之前master发送的command多，就选谁
+
+> ## 持久化
+
+- RDB（将当前进程中的数据生成快照保存到硬盘，也叫快照持久化，冷备）
+
+    - 手动触发
+        - save（阻塞redis进程，直到RDB文件创建完毕）
+        - bgsave（fork子进程，创建RDB文件，不阻塞redis进程）
+
+    - 自动触发
+        - save m n（在配置文件中配置save m n，指定当m秒内发生n次变化时，会触发bgsave。）
+            ```
+            ################################ SNAPSHOTTING  ################################
+            #
+            # Save the DB on disk:
+            #
+            #   save <seconds> <changes>
+            #
+            #   Will save the DB if both the given number of seconds and the given
+            #   number of write operations against the DB occurred.
+            #
+            #   In the example below the behaviour will be to save:
+            #   在900秒(15分钟)后，如果至少有一个键被改变
+            #   300秒后(5分钟)如果至少有10个键被改变
+            #   60秒后，如果至少改变了10000个键
+            #
+            #   Note: you can disable saving completely by commenting out all "save" lines.
+            #
+            #   It is also possible to remove all the previously configured save
+            #   points by adding a save directive with a single empty string argument
+            #   like in the following example:
+            #
+            #   save ""
+
+            save 900 1
+            save 300 10
+            save 60 10000
+            ```
+
+    -  启动时加载
+        
+        - RDB文件的载入工作是在服务器启动时自动执行的，并没有专门的命令。
+        - 但是由于**AOF的优先级更高**，因此当AOF开启时，Redis会优先载入AOF文件来恢复数据；
+        - 只有当**AOF关闭时**，才会在Redis服务器启动时检测RDB文件，并自动载入。
+    
+    - RDB常用配置总结
+
+        ```
+        save m n：
+        bgsave自动触发的条件；如果没有save m n配置，相当于自动的RDB持久化关闭，不过此时仍可以通过其他方式触发
+
+        stop-writes-on-bgsave-error yes：
+        当bgsave出现错误时，Redis是否停止执行写命令；设置为yes，则当硬盘出现问题时，可以及时发现，避免数据的大量丢失；设置为no，则Redis无视bgsave的错误继续执行写命令，当对Redis服务器的系统(尤其是硬盘)使用了监控时，该选项考虑设置为no
+
+        rdbcompression yes：
+        是否开启RDB文件压缩
+
+        rdbchecksum yes：
+        是否开启RDB文件的校验，在写入文件和读取文件时都起作用；关闭checksum在写入文件和启动文件时大约能带来10%的性能提升，但是数据损坏时无法发现
+
+        dbfilename dump.rdb：
+        RDB文件名
+
+        dir ./：
+        RDB文件和AOF文件所在目录
+        ```
+
+- AOF
+
+    - 开启AOF
+        ```
+        # Redis服务器默认开启RDB，关闭AOF；要开启AOF，需要在配置文件中配置：
+
+        appendonly yes
+        ```
+
+    - 执行流程（由于需要记录Redis的每条写命令，因此AOF不需要触发，下面介绍AOF的执行流程）
+        ```
+        1、命令追加(append)：将Redis的写命令追加到缓冲区aof_buf。
+        2、文件写入(write)和文件同步(sync)：根据不同的同步策略将aof_buf中的内容同步到硬盘。
+        3、文件重写(rewrite)：定期重写AOF文件，达到压缩的目的。
+        ```
+
+    - 启动时加载
+        ```
+        前面提到过，当AOF开启时，Redis启动时会优先载入AOF文件来恢复数据；只有当AOF关闭时，才会载入RDB文件恢复数据。
+        ```
+
+    - AOF常用配置总结
+        ```
+        下面是AOF常用的配置项，以及默认值；前面介绍过的这里不再详细介绍。
+
+        appendonly no：
+        是否开启AOF
+
+        appendfilename "appendonly.aof"：
+        AOF文件名
+
+        dir ./：
+        RDB文件和AOF文件所在目录
+
+        appendfsync everysec：
+        fsync持久化策略
+        # always #每次有数据修改发生时都会写入AOF文件。
+        # everysec #每秒钟同步一次，该策略为AOF的默认策略。
+        # no #从不同步。高效但是数据不会被持久化。
+
+        no-appendfsync-on-rewrite no：
+        AOF重写期间是否禁止fsync；如果开启该选项，可以减轻文件重写时CPU和硬盘的负载（尤其是硬盘），但是可能会丢失AOF重写期间的数据；需要在负载和安全性之间进行平衡
+
+        auto-aof-rewrite-percentage 100：
+        文件重写触发条件之一
+
+        auto-aof-rewrite-min-size 64mb：
+        文件重写触发提交之一
+
+        aof-load-truncated yes：
+        如果AOF文件结尾损坏，Redis启动时是否仍载入AOF文件
+        ```
+- RDB 和 AOF 优缺点对比：
+
+    - RDB持久化：
+        - 优点
+            ```
+            RDB文件紧凑，体积小，网络传输快，适合全量复制；恢复速度比AOF快很多。
+            当然，与AOF相比，RDB最重要的优点之一是对性能的影响相对较小。
+            ```
+
+        - 缺点
+            ```
+            致命缺点在于其数据快照的持久化方式注定了必然做不到实时持久化，
+            而在数据越来越重要的今天，数据的大量丢失是无法接收的，因此AOF持久化成为主流。
+            此外，RDB文件需要满足特定格式，兼容性差（如老版本的Redis不兼容新版本的RDB文件）。
+            ```
+
+    - AOF持久化：
+        - 优点
+            ```
+            支持秒级持久化、兼容性好。
+            ```
+
+        - 缺点
+            ```
+            文件大，恢复速度慢，对性能影响大。
+            ```
