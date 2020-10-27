@@ -1,3 +1,12 @@
+> ## 2020.10.27-windows docker xshell 默认登录密码
+- boot2docker用户和密码
+
+| 用户    | 密码   | 进入方式 |
+|--------|--------|------|
+| docker | tcuser | ssh  |
+| root   |        | command：sudo -i (docker用户下执行)  |
+
+
 > ## 2020.9.23-redis持久化
 - [进去看看](../../interview/redis?id=持久化)
 
