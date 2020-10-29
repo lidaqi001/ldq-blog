@@ -1,3 +1,12 @@
+> ## 2020.10.29-v2rayN报错
+- 报错内容：
+
+    ```
+    failed to read response header > websocket: close 1000 (normal)
+    ```
+- 错误原因：系统时间与服务器时间不一致
+- 解决办法：校准系统时间
+
 > ## 2020.10.27-windows docker xshell 默认登录密码
 - boot2docker用户和密码
 
