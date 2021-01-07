@@ -1,11 +1,13 @@
 > ## 2021.1.7-/etc/init.d和/etc/rc.d/rc.local的区别
-- /etc/init.d：是/etc/rc.d/init.d的软链接、
-- /etc/init.d是个目录（这个目录里面用于放置shell脚本，注意是脚本）
+- /etc/init.d 是一个目录（这个目录里面用于放置shell脚本，注意是脚本）：
+    - 是/etc/rc.d/init.d的软链接
     - 这些脚本是启动脚本，用于Linux中服务的启动、停止、重启
     - 比如各种Linux中的服务都会有启动脚本放在这里，像是ssh服务的文件sshd，nginx、php-fpm的启动文件
+    
 - /etc/rc.d/rc.local 是一个文件（这个文件用于用户自定义开机启动程序）
     - 也就是说用户可以把需要开机启动的命令、运行可执行脚本的命令写入这个文件，这样就可以在系统启动时自动执行这个命令
     - 比如把一个shell脚本的完整路径写入这个文件，那这个shell脚本就会在开机后自动执行
+    
 - 为了方便理解，这里我们放一个详细介绍Linux启动流程的链接
     - [进去看看](./my/knowledgePoint/linuxStartProcessFlow)
 
