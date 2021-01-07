@@ -7,7 +7,7 @@
     - 也就是说用户可以把需要开机启动的命令、运行可执行脚本的命令写入这个文件，这样就可以在系统启动时自动执行这个命令
     - 比如把一个shell脚本的完整路径写入这个文件，那这个shell脚本就会在开机后自动执行
 - 为了方便理解，这里我们放一个详细介绍Linux启动流程的链接
-    - [进去看看](../knowledgePoint/linuxStartProcessFlow)
+    - [进去看看](./my/knowledgePoint/linuxStartProcessFlow)
 
 > ## 2021.1.6-安装supervisor（及产生的问题）
 - 安装：
