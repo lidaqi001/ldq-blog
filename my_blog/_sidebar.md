@@ -10,6 +10,8 @@
 	* 算法与数据结构
 		* [arithmetic(算法)](./my/knowledgePoint/arithmetic)
 		* [dataStruct(数据结构)](./my/knowledgePoint/dataStruct)
+	* Linux
+	    * [Linux系统启动流程](./my/knowledgePoint/linuxStartProcessFlow)
 * 面试知识点
 	* [linux](./interview/linux)
 	* [php](./interview/php)
