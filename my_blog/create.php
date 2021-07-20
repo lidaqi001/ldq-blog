@@ -36,7 +36,7 @@ function createFile($title, $time, $path)
 }
 function syncSidebar($title, $path)
 {
-    writeFile('./_sidebar.md', function () use ($title, $path) {
+    writeFile('./sidebar.md', function () use ($title, $path) {
         return "\r* [$title]($path)";
     }, 'a+');
 }
@@ -60,7 +60,7 @@ echo 'DateTime: ' . date('Y-m-d H:i:s', $time) . PHP_EOL;
 $path = './my/' . date('Ymdhis', $time) . '.md';
 createFile($title, $time, $path);
 
-// 同步_sidebar.md
+// 同步sidebar.md
 syncSidebar($title, $path);
 
 fwrite(STDOUT, 'File Path : ' . $path);
