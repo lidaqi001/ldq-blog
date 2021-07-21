@@ -16,8 +16,6 @@ docs
 </style>
 
 
-<a target="blank"  href="https://doc.ldqsdy.com/">知识点</a>
+<a target="blank"  href="https://lidaqi001.github.io/ldq-blog/doc">知识点</a>
 <br/>
 <a target="blank"  href="http://alycan.com/">友链=>alycan</a>
-<br/>
-<a target="blank"  href="https://beian.miit.gov.cn">苏ICP备18001829号-2</a>
