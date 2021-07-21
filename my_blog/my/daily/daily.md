@@ -1,4 +1,4 @@
-> ## [2021.7.20-Hyperf框架grpc实现](../sourceAnalysis/hyperf-grpc)
+> ## [2021.7.20-Hyperf框架grpc实现](./my/sourceAnalysis/hyperf-grpc)
 
 > ## 2021.1.7-/etc/init.d和/etc/rc.d/rc.local的区别
 <details>
@@ -20,8 +20,8 @@
 > ## 2021.1.6-安装supervisor（及产生的问题）
 <details>
   <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+
 - 安装：
-    
     ```
     # 安装Supervisor
     $ yum install python-setuptools 
@@ -106,17 +106,17 @@
 
 </details>
 
-> ## [2020.9.23-redis持久化](../../interview/redis?id=持久化)
+> ## [2020.9.23-redis持久化](./interview/redis?id=持久化)
 
-> ## [2020.9.15-redis哨兵选举master策略](../../interview/redis?id=哨兵选举策略)
+> ## [2020.9.15-redis哨兵选举master策略](./interview/redis?id=哨兵选举策略)
 
-> ## [2020.9.14-redis哨兵模式](../../interview/redis?id=哨兵配置)
+> ## [2020.9.14-redis哨兵模式](./interview/redis?id=哨兵配置)
 
-> ## [2020.9.11-redis主从配置](../../interview/redis?id=主从配置)
+> ## [2020.9.11-redis主从配置](./interview/redis?id=主从配置)
 
-> ## [2020.9.9-docker环境下elasticsearch集群部署（单机模拟）](../../interview/elasticsearch?id=docker环境下集群部署（单机模拟）)
+> ## [2020.9.9-docker环境下elasticsearch集群部署（单机模拟）](./interview/elasticsearch?id=docker环境下集群部署（单机模拟）)
 
-> ## [2020.9.8-MySQLd启动命令](../../interview/mysql/mysql?id=mysqld启动命令)
+> ## [2020.9.8-MySQLd启动命令](./interview/mysql/mysql?id=mysqld启动命令)
 
 > ## 2020.9.7-MySQL主从
 
@@ -125,8 +125,8 @@
 
 - MySQL主从服务器配置
     - MySQL版本：8.0.21
-    - [主从同步的机制](../../interview/mysql/mysql?id=数据库主从复制原理)
-    - [步骤](../../interview/mysql/mysql?id=主从复制操作)
+    - [主从同步的机制](./interview/mysql/mysql?id=数据库主从复制原理)
+    - [步骤](./interview/mysql/mysql?id=主从复制操作)
 
 </details>
 
@@ -196,15 +196,12 @@
 <details>
   <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
 
-    ```
-    # 问题产生：
-        DNS服务器地址失效
+## 问题产生：
+    DNS服务器地址失效
         
-    # 解决：
-        更换新的DNS服务器地址
-
-        # /etc/resolv.conf它是DNS客户机配置文件，用于设置DNS服务器的IP地址及DNS域名
-        nameserver 202.102.192.68
-    ```
+## 解决：
+    更换新的DNS服务器地址
+    # /etc/resolv.conf它是DNS客户机配置文件，用于设置DNS服务器的IP地址及DNS域名
+    nameserver 202.102.192.68
 
 </details>
