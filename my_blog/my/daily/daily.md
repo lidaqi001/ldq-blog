@@ -13,12 +13,14 @@
 - 在go开发中,使用import导入相应包时,有时会碰到 `import cycle not allowed` 这个错误
 - 错误产生的原因在于,你导入的包和你当前的包,互相导入(依赖)
 - 这里举一个例子:
+
 `Test/A`
 ```
 package A
 
 import "Test/B"
 ```
+
 `Test/B`
 ```
 package B
@@ -29,6 +31,9 @@ import "Test/A"
     - A导入B
     - B又导入A
     - 致使两个包相互依赖,互相导入,从而出现 `import cycle not allowed` 这个错误
+- 解决办法
+    - 做好项目的包规划,有冲突的引用方法新建一个包,解决循环导入的错误
+    - 网上有通过 `interface(接口)` 的方法解决这个问题,但我认为这样增加了复杂度,将简单的问题复杂化了
 
 </details>
 
