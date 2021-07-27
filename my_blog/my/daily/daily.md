@@ -128,7 +128,7 @@ import "Test/A"
 
     比如 10.100.122.2/24，这种地址表示形式就是 CIDR，/24 表示前 24 位是网络号，剩余的 8 位是主机号。
 
-    ![cidr](/my_blog/images/cidr.jpg)
+    ![cidr](../../images/cidr.jpg)
 
 <!-- </details> -->
 

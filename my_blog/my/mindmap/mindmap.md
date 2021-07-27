@@ -7,7 +7,7 @@
 <details>
     <summary><mark><font color=darkred>点击查看</font></mark></summary>
 
-![Redis](/my_blog/images/mindmap/redis_my.png)
+![Redis](../../images/mindmap/redis_my.png)
 
 </details>
 
@@ -16,7 +16,7 @@
 <details>
     <summary><mark><font color=darkred>点击查看</font></mark></summary>
     
-![Mysql](/my_blog/images/mindmap/mysql_my.png)
+![Mysql](../../images/mindmap/mysql_my.png)
 
 </details>
 
@@ -28,7 +28,7 @@
 <details>
     <summary><mark><font color=darkred>点击查看</font></mark></summary>
     
-![redis知识点](/my_blog/images/mindmap/redis.jpg)
+![redis知识点](../../images/mindmap/redis.jpg)
 
 </details>
 
@@ -37,7 +37,7 @@
 <details>
     <summary><mark><font color=darkred>点击查看</font></mark></summary>
 
-![吊打面试官](/my_blog/images/mindmap/killInterview.jpg)
+![吊打面试官](../../images/mindmap/killInterview.jpg)
 
 </details>
 
@@ -46,6 +46,6 @@
 <details>
     <summary><mark><font color=darkred>点击查看</font></mark></summary>
 
-![复习知识点总结](/my_blog/images/mindmap/复习脑图.jpg)
+![复习知识点总结](../../images/mindmap/复习脑图.jpg)
 
 </details>
