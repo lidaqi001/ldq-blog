@@ -23,7 +23,7 @@
 
 > ## 数据库主从复制原理
 
-![流程图](../../my/daily/images/ms.jpg)
+![流程图](/my_blog/images/ms.jpg)
 - ①：主库的更新事件（update、insert、delete）被写到binlog
 - ②：主库创建一个binlog dump thread线程，把binlog的内容发送到从库
 - ③：从库创建一个I/O线程，读取主库传过来的binlog内容并写入到relay log

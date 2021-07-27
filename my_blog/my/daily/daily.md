@@ -1,3 +1,37 @@
+<!--
+// 内容折叠显示
+<details>
+    <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+    ...内容...    
+</details>
+-->
+
+> ## 2021.7.27-Golang中的包循环导入错误(import cycle not allowed)
+<details>
+    <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+
+- 在go开发中,使用import导入相应包时,有时会碰到 `import cycle not allowed` 这个错误
+- 错误产生的原因在于,你导入的包和你当前的包,互相导入(依赖)
+- 这里举一个例子:
+`Test/A`
+```
+package A
+
+import "Test/B"
+```
+`Test/B`
+```
+package B
+
+import "Test/A"
+```
+- 这里发生了什么?
+    - A导入B
+    - B又导入A
+    - 致使两个包相互依赖,互相导入,从而出现 `import cycle not allowed` 这个错误
+
+</details>
+
 > ## [2021.7.20-Hyperf框架grpc实现](./my/sourceAnalysis/hyperf-grpc)
 
 > ## 2021.1.7-/etc/init.d和/etc/rc.d/rc.local的区别
@@ -17,68 +51,10 @@
 
 </details>
 
-> ## 2021.1.6-安装supervisor（及产生的问题）
-<details>
-  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
-
-- 安装：
-    ```
-    # 安装Supervisor
-    $ yum install python-setuptools 
-    $ easy_install supervisor
-
-    $ # 自定义配置Supervisor
-    $ mkdir -vp /etc/supervisor/supervisord.d
-    $ cd /etc/supervisor
-    $ touch supervisord.conf
-    $ echo_supervisord_conf > /etc/supervisor/supervisord.conf
-    ```
-
-- 配置：
-    - 打开supervisord.conf
-    - 文件最后面的位置，改为： [include] files = supervisord.d/*.ini
-
-- 配置守护进程的配置文件
-    ```
-    [program:项目名称]
-    command=bash 脚本.sh 
-    directory=/root
-    autostart=true
-    autorestart=true
-    stderr_logfile=/var/log/日志.err.log
-    stdout_logfile=/var/log/日志.out.log 
-    environment=ASPNETCORE_ENVIRONMENT=Production 
-    user=root
-    stopsignal=INT
-    startsecs=1
-    ```
-- 运行 
-
-    ```
-    $ supervisord -c /etc/supervisor/supervisord.conf
-    ```
-- 检查运行情况
-    ```
-    // 查看守护进程状态
-    $ supervisorctl status
-    // 查看supervisor进程是否启动
-    $ ps -ef | grep supervisor
-    ```
-- 问题：
-    - 解决 unix:///tmp/supervisor.sock no such file 问题
-    ```
-    // 打开配置文件
-    $ vim /etc/supervisord.conf
-    
-    // 这里把所有的/tmp开头的路径改掉
-    // tmp文件夹下容易被linux自动清掉
-    // 例子：/tmp/supervisor.sock 改成 /var/run/supervisor.sock
-    ```
-
-</details>
+> ## [2021.1.6-安装supervisor（及产生的问题）](./interview/linux?id=安装Supervisor)
 
 > ## 2020.10.29-v2rayN报错
-
+    
 <details>
   <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
 
@@ -132,8 +108,8 @@
 
 > ## 2020.9.3-无分类地址 CIDR 10.100.122.2/24
 
-<details>
-  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+<!-- <details>
+  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary> -->
 
 - 无分类地址 CIDR
 
@@ -147,9 +123,9 @@
 
     比如 10.100.122.2/24，这种地址表示形式就是 CIDR，/24 表示前 24 位是网络号，剩余的 8 位是主机号。
 
-    ![cidr](./images/cidr.jpg)
+    ![cidr](/my_blog/images/cidr.jpg)
 
-</details>
+<!-- </details> -->
 
 > ## 2020.9.2-firewalld进程不能启动
 
