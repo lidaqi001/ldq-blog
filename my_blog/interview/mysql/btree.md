@@ -5,20 +5,20 @@
 
 > B-Tree
 
-![image](./b-tree.png)
+![image](../../images/mysql/b-tree.png)
 
 > B+Tree
 
-![image](./b+tree.png)
+![image](../../images/mysql/b+tree.png)
 
 > 主键索引（聚集索引）
 
-![image](./btreePrimaryKey.png)
+![image](../../images/mysql/btreePrimaryKey.png)
 
 > 辅助索引（除主键索引外的索引）
 > *辅助索引data域存储相应记录主键的值而不是地址*
 
-![image](./btreeSecondaryKey.png)
+![image](../../images/mysql/btreeSecondaryKey.png)
 
 > 参考链接：
 [https://www.cnblogs.com/vianzhang/p/7922426.html](https://www.cnblogs.com/vianzhang/p/7922426.html)

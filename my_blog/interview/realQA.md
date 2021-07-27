@@ -65,9 +65,9 @@ UDP |可能丢包   |少 |数据报 |无连接
 TCP是稳定传输，稳定，略慢
 
 UDP是不稳定传输，不稳定，速度快
-> ![image](./realQA/tcpStruct.png)
-![image](./realQA/udpStruct.png)
-![image](./realQA/contrast.png)
+> ![image](../images/realQA/tcpStruct.png)
+![image](../images/realQA/udpStruct.png)
+![image](../images/realQA/contrast.png)
 
 > 参考：[https://zhuanlan.zhihu.com/p/24860273](https://zhuanlan.zhihu.com/p/24860273)
 
