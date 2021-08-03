@@ -5,8 +5,25 @@
     ...内容...    
 </details>
 -->
+> ## 2021.08.03-Go 单元测试
 
-> ## 2021.7.27-Golang中的包循环导入错误(import cycle not allowed)
+- Go语言拥有一套单元测试和性能测试系统，仅需要添加很少的代码就可以快速测试一段需求代码。
+- go test 命令，会自动读取源码目录下面名为 *_test.go 的文件，生成并运行测试用的可执行文件。
+
+<details>
+    <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+
+这里介绍几个常用的参数：
+```
+-bench regexp : 性能测试，支持表达式对测试函数进行筛选。`-bench .` 则是对所有的benchmark函数测试;
+-run regexp : 只运行 regexp 匹配的函数，例如 `-run=Array` 那么就执行包含有 Array 开头的函数；
+-benchmem:性能测试的时候显示测试函数的内存分配的统计信息
+-cover : 开启测试覆盖率；
+-v : 显示测试的详细信息;
+```
+</details>
+
+> ## 2021.07.27-Golang中的包循环导入错误(import cycle not allowed)
 <details>
     <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
 
