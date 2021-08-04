@@ -48,7 +48,6 @@ func gostringnocopy(str *byte) string { // 跟据字符串地址构建string
 而且要注意`string`其实就是个`struct`, 对外呈现叫做`string`。
 
 ---
----
 
 ## **byte 标准概念**
 ```
