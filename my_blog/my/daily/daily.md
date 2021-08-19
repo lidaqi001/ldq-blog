@@ -24,6 +24,7 @@
 -benchmem:性能测试的时候显示测试函数的内存分配的统计信息
 -cover : 开启测试覆盖率；
 -v : 显示测试的详细信息;
+-count=1 : 禁用测试缓存; 
 ```
 > 参考文章
 [go Test Benchmark 性能测试](https://blog.csdn.net/luolianxi/article/details/105458889)
