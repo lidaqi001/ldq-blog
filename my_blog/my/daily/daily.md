@@ -6,10 +6,15 @@
 </details>
 -->
 
+> ## 2021.09.23 
+- [rabbitmq延时消息的原理及实现](http://note.youdao.com/noteshare?id=fb75e1177ffaa53593214ea415405106&sub=47355B80A0D84224A1A88D4365C289E8)
+- [rabbitmq核心概念](http://note.youdao.com/noteshare?id=b64b9c624838aa0370ecf19f9213e868&sub=wcp1626661769638165)
+- [rabbitmq各个参数](http://note.youdao.com/noteshare?id=6cecdcf8dc98f23b2cf1253be8f0b490&sub=8214D8AB92E84A43B8CEA74C8C349560)
+- [rabbitmq如何保证消息不丢失](http://note.youdao.com/noteshare?id=ce92a54f672faa4f6324e73aa85f7402&sub=AB135FF24D444B9AAA6DD07515B69E85)
+
 > ## 2021.08.04 - [Golang string类型和[]byte类型的对比](./my/golang/string_byte)
 
 > ## 2021.08.03-Go 单元测试
-
 
 <details>
     <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
@@ -137,8 +142,8 @@ import "Test/A"
 
 > ## 2020.9.3-无分类地址 CIDR 10.100.122.2/24
 
-<!-- <details>
-  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary> -->
+<details>
+  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
 
 - 无分类地址 CIDR
 
@@ -154,7 +159,7 @@ import "Test/A"
 
     ![cidr](../../images/cidr.jpg)
 
-<!-- </details> -->
+</details>
 
 > ## 2020.9.2-firewalld进程不能启动
 
