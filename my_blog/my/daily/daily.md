@@ -1,23 +1,28 @@
 <!--
 // 内容折叠显示
 <details>
-    <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+    <summary><mark><font color=darkred>查看更多</font></mark></summary>
     ...内容...    
 </details>
 -->
 
 > ## 2021.09.23 
+<details>
+    <summary><mark><font color=darkred>查看更多</font></mark></summary>
+
 - [rabbitmq延时消息的原理及实现](http://note.youdao.com/noteshare?id=fb75e1177ffaa53593214ea415405106&sub=47355B80A0D84224A1A88D4365C289E8)
 - [rabbitmq核心概念](http://note.youdao.com/noteshare?id=b64b9c624838aa0370ecf19f9213e868&sub=wcp1626661769638165)
 - [rabbitmq各个参数](http://note.youdao.com/noteshare?id=6cecdcf8dc98f23b2cf1253be8f0b490&sub=8214D8AB92E84A43B8CEA74C8C349560)
 - [rabbitmq如何保证消息不丢失](http://note.youdao.com/noteshare?id=ce92a54f672faa4f6324e73aa85f7402&sub=AB135FF24D444B9AAA6DD07515B69E85)
 
+</details>
+
 > ## 2021.08.04 - [Golang string类型和[]byte类型的对比](./my/golang/string_byte)
 
-> ## 2021.08.03-Go 单元测试
+> ## 2021.08.03 - Go 单元测试
 
 <details>
-    <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+    <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
 - Go语言拥有一套单元测试和性能测试系统，仅需要添加很少的代码就可以快速测试一段需求代码。
 - go test 命令，会自动读取源码目录下面名为 *_test.go 的文件，生成并运行测试用的可执行文件。
@@ -35,9 +40,9 @@
 [go Test Benchmark 性能测试](https://blog.csdn.net/luolianxi/article/details/105458889)
 </details>
 
-> ## 2021.07.27-Golang中的包循环导入错误(import cycle not allowed)
+> ## 2021.07.27 - Golang中的包循环导入错误(import cycle not allowed)
 <details>
-    <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+    <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
 - 在go开发中,使用import导入相应包时,有时会碰到 `import cycle not allowed` 这个错误
 - 错误产生的原因在于,你导入的包和你当前的包,互相导入(依赖)
@@ -66,11 +71,11 @@ import "Test/A"
 
 </details>
 
-> ## [2021.7.20-Hyperf框架grpc实现](./my/sourceAnalysis/hyperf-grpc)
+> ## 2021.07.20 - [Hyperf框架grpc实现](./my/sourceAnalysis/hyperf-grpc)
 
-> ## 2021.1.7-/etc/init.d和/etc/rc.d/rc.local的区别
+> ## 2021.01.07 - /etc/init.d和/etc/rc.d/rc.local的区别
 <details>
-  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+  <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
 - /etc/init.d 是一个目录（这个目录里面用于放置shell脚本，注意是脚本）：
     - 是/etc/rc.d/init.d的软链接
@@ -85,12 +90,12 @@ import "Test/A"
 
 </details>
 
-> ## [2021.1.6-安装supervisor（及产生的问题）](./interview/linux?id=安装Supervisor)
+> ## 2021.01.06 - [安装supervisor（及产生的问题）](./interview/linux?id=安装Supervisor)
 
-> ## 2020.10.29-v2rayN报错
+> ## 2020.10.29 - v2rayN报错
     
 <details>
-  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+  <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
 - 报错内容：
 
@@ -102,10 +107,10 @@ import "Test/A"
 
 </details>
 
-> ## 2020.10.27-windows docker xshell 默认登录密码
+> ## 2020.10.27 - windows docker xshell 默认登录密码
 
 <details>
-  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+  <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
 - boot2docker用户和密码
 
@@ -116,22 +121,22 @@ import "Test/A"
 
 </details>
 
-> ## [2020.9.23-redis持久化](./interview/redis?id=持久化)
+> ## 2020.09.23 - [redis持久化](./interview/redis?id=持久化)
 
-> ## [2020.9.15-redis哨兵选举master策略](./interview/redis?id=哨兵选举策略)
+> ## 2020.09.15 - [redis哨兵选举master策略](./interview/redis?id=哨兵选举策略)
 
-> ## [2020.9.14-redis哨兵模式](./interview/redis?id=哨兵配置)
+> ## 2020.09.14 - [redis哨兵模式](./interview/redis?id=哨兵配置)
 
-> ## [2020.9.11-redis主从配置](./interview/redis?id=主从配置)
+> ## 2020.09.11 - [redis主从配置](./interview/redis?id=主从配置)
 
-> ## [2020.9.9-docker环境下elasticsearch集群部署（单机模拟）](./interview/elasticsearch?id=docker环境下集群部署（单机模拟）)
+> ## 2020.09.09 - [docker环境下elasticsearch集群部署（单机模拟）](./interview/elasticsearch?id=docker环境下集群部署（单机模拟）)
 
-> ## [2020.9.8-MySQLd启动命令](./interview/mysql/mysql?id=mysqld启动命令)
+> ## 2020.09.08 - [MySQLd启动命令](./interview/mysql/mysql?id=mysqld启动命令)
 
-> ## 2020.9.7-MySQL主从
+> ## 2020.09.07 - MySQL主从
 
 <details>
-  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+  <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
 - MySQL主从服务器配置
     - MySQL版本：8.0.21
@@ -140,10 +145,10 @@ import "Test/A"
 
 </details>
 
-> ## 2020.9.3-无分类地址 CIDR 10.100.122.2/24
+> ## 2020.09.03 - 无分类地址 CIDR 10.100.122.2/24
 
 <details>
-  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+  <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
 - 无分类地址 CIDR
 
@@ -161,10 +166,10 @@ import "Test/A"
 
 </details>
 
-> ## 2020.9.2-firewalld进程不能启动
+> ## 2020.09.02 - firewalld进程不能启动
 
 <details>
-  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+  <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
 - firewalld进程启动不了（报错超时）[参考链接](https://blog.csdn.net/crynono/article/details/76132611)
     
@@ -201,10 +206,10 @@ import "Test/A"
 
 </details>
 
-> ## 2020.9.1-Temporary failure in name resolution 错误解决方法
+> ## 2020.09.01 - Temporary failure in name resolution 错误解决方法
 
 <details>
-  <summary><mark><font color=darkred>点击查看详细内容</font></mark></summary>
+  <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
 - 问题产生：
     DNS服务器地址失效
