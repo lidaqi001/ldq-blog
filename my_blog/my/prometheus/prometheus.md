@@ -1,18 +1,16 @@
-# prometheus
-
 > ## [**prometheus操作指南**](https://github.com/lidaqi001/prometheus-book)
 ---
-
+## 导航
 > 1) [简介](#简介)
 > 2) [架构](#架构)
 > 3) [数据模型](#数据模型)
-> 4) [Metric(指标)类型](#Metric(指标)类型)
+> 4) [Metric(指标)类型](#Metric类型)
 > 5) [PromQL(prometheus内置数据查询语言)](#PromQL)
 
 
 ---
 
-> ## 简介
+> ## [简介](#导航)
 Prometheus（普罗米修斯）是一套开源的监控&报警&时间序列数据库的组合，起始是由SoundCloud公司开发的。
 
 `基本原理:` 是通过HTTP协议周期性抓取被监控组件的状态，这样做的好处是任意组件只要提供HTTP接口就可以接入监控系统，不需要任何SDK或者其他的集成过程。这样做非常适合虚拟化环境比如VM或者Docker。
@@ -33,7 +31,7 @@ Prometheus（普罗米修斯）是一套开源的监控&报警&时间序列数�
 
 ---
 
-> ## 架构
+> ## [架构](#导航)
 ![image](https://note.youdao.com/yws/api/personal/file/BA6BE8F5C3014C168897A9EE75609127?method=download&shareKey=c18586542683aa7d36f1caf112763ff0)
 
 它的服务过程是这样的 `Prometheus daemon` 负责定时去目标上抓取metrics(指标) 数据，每个抓取目标需要暴露一个http服务的接口给它定时抓取。
@@ -46,7 +44,7 @@ Prometheus（普罗米修斯）是一套开源的监控&报警&时间序列数�
 
 ---
 
-> ## 数据模型
+> ## [数据模型](#导航)
 
 - 采用单值模型, 数据模型的核心概念是metric,labels和samples.
 - 格式：`<metric name>{<label name>=<label value>, …}`
@@ -62,7 +60,7 @@ Prometheus（普罗米修斯）是一套开源的监控&报警&时间序列数�
 
 ---
 
-> ## Metric(指标)类型
+> ## [Metric类型](#导航)
 
 > 从存储上来讲所有的监控指标metric都是相同的，但是在不同的场景下这些metric又有一些细微的差异。 <br><br>
 例如，在Node Exporter返回的样本中指标node_load1反应的是当前系统的负载状态，随着时间的变化这个指标返回的样本数据是在不断变化的。而指标node_cpu所获取到的样本数据却不同，它是一个持续增大的值，因为其反应的是CPU的累积使用时间，从理论上讲只要系统不关机，这个值是会无限变大的。<br><br>
@@ -152,7 +150,7 @@ prometheus_tsdb_compaction_chunk_range_count 780
 
 ---
 
-> ## PromQL
+> ## [PromQL](#导航)
 > prometheus内置数据查询语言
 - [初识PromQL](https://github.com/lidaqi001/prometheus-book/blob/master/promql/prometheus-query-language.md)
 - [PromQL操作符](https://github.com/lidaqi001/prometheus-book/blob/master/promql/prometheus-promql-operators-v2.md)
