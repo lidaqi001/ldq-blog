@@ -5,7 +5,9 @@
 > 2) [架构](#架构)
 > 3) [数据模型](#数据模型)
 > 4) [Metric(指标)类型](#Metric类型)
-> 5) [PromQL(prometheus内置数据查询语言)](#PromQL)
+> 5) [PromQL(prometheus内置数据查询语言)](#PromQL)<br>
+> [参考](#参考)<br>
+> [扩展](#扩展)
 
 
 ---
@@ -158,7 +160,8 @@ prometheus_tsdb_compaction_chunk_range_count 780
 - [PromQL内置函数](https://github.com/lidaqi001/prometheus-book/blob/master/promql/prometheus-promql-functions.md)
 
 ---
-> 参考:<br>
+
+> ## [参考](#导航):
 
 ### prometheus
 - [Prometheus操作指南](https://github.com/lidaqi001/prometheus-book)
