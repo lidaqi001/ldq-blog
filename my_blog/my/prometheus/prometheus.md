@@ -1,18 +1,18 @@
 # prometheus
 
-> ## <a hre="https://github.com/lidaqi001/prometheus-book">**prometheus操作指南**</a>
+> ## [**prometheus操作指南**](https://github.com/lidaqi001/prometheus-book)
 ---
 
-> 1) <a href="#what">简介</a>
-> 2) <a href="#architecture ">架构</a>
-> 3) <a href="#dataModel ">数据模型</a>
-> 4) <a href="#dataType">Metric(指标)类型</a>
-> 5) <a href="#function">PromQL(prometheus内置数据查询语言)</a>
+> 1) [简介](#简介)
+> 2) [架构](#架构)
+> 3) [数据模型](#数据模型)
+> 4) [Metric(指标)类型](#Metric(指标)类型)
+> 5) [PromQL(prometheus内置数据查询语言)](#PromQL)
 
 
 ---
 
-> ## <a id="what">简介</a>
+> ## 简介
 Prometheus（普罗米修斯）是一套开源的监控&报警&时间序列数据库的组合，起始是由SoundCloud公司开发的。
 
 `基本原理:` 是通过HTTP协议周期性抓取被监控组件的状态，这样做的好处是任意组件只要提供HTTP接口就可以接入监控系统，不需要任何SDK或者其他的集成过程。这样做非常适合虚拟化环境比如VM或者Docker。
@@ -33,8 +33,8 @@ Prometheus（普罗米修斯）是一套开源的监控&报警&时间序列数�
 
 ---
 
-> ## <a id="architecture ">架构</a>
-![image](https://note.youdao.com/yws/public/resource/a4d3df936b0d4594368f90e0cc180f9f/xmlnote/7D3D7EA690AA436188027F1EED42827F/12678)
+> ## 架构
+![image](https://note.youdao.com/yws/api/personal/file/BA6BE8F5C3014C168897A9EE75609127?method=download&shareKey=c18586542683aa7d36f1caf112763ff0)
 
 它的服务过程是这样的 `Prometheus daemon` 负责定时去目标上抓取metrics(指标) 数据，每个抓取目标需要暴露一个http服务的接口给它定时抓取。
 - `Prometheus`：支持通过配置文件、文本文件、zookeeper、Consul、DNS SRV lookup等方式指定抓取目标。支持很多方式的图表可视化，例如十分精美的Grafana，自带的Promdash，以及自身提供的模版引擎等等，还提供HTTP API的查询方式，自定义所需要的输出。
@@ -46,7 +46,7 @@ Prometheus（普罗米修斯）是一套开源的监控&报警&时间序列数�
 
 ---
 
-> ## <a id="dataModel">数据模型</a>
+> ## 数据模型
 
 - 采用单值模型, 数据模型的核心概念是metric,labels和samples.
 - 格式：`<metric name>{<label name>=<label value>, …}`
@@ -62,7 +62,7 @@ Prometheus（普罗米修斯）是一套开源的监控&报警&时间序列数�
 
 ---
 
-> ## <a id="dataType">Metric(指标)类型</a>
+> ## Metric(指标)类型
 
 > 从存储上来讲所有的监控指标metric都是相同的，但是在不同的场景下这些metric又有一些细微的差异。 <br><br>
 例如，在Node Exporter返回的样本中指标node_load1反应的是当前系统的负载状态，随着时间的变化这个指标返回的样本数据是在不断变化的。而指标node_cpu所获取到的样本数据却不同，它是一个持续增大的值，因为其反应的是CPU的累积使用时间，从理论上讲只要系统不关机，这个值是会无限变大的。<br><br>
@@ -152,7 +152,8 @@ prometheus_tsdb_compaction_chunk_range_count 780
 
 ---
 
-> ## <a id="function">PromQL(prometheus内置数据查询语言)</a>
+> ## PromQL
+> prometheus内置数据查询语言
 - [初识PromQL](https://github.com/lidaqi001/prometheus-book/blob/master/promql/prometheus-query-language.md)
 - [PromQL操作符](https://github.com/lidaqi001/prometheus-book/blob/master/promql/prometheus-promql-operators-v2.md)
 - [PromQL聚合操作](https://github.com/lidaqi001/prometheus-book/blob/master/promql/prometheus-aggr-ops.md)
@@ -182,7 +183,7 @@ prometheus_tsdb_compaction_chunk_range_count 780
 # `扩展`
 
 > ## 整体设计思路
-![image](https://yqfile.alicdn.com/d7f1fadf711ea3ac2280431af4683fa21a1124f6.png)
+![image](https://note.youdao.com/yws/api/personal/file/2779FCD11B4A473EB911D2A80D363EB9?method=download&shareKey=09e0d538dcab3afec3abeb5bdc97889c)
 Prometheus的整体技术架构可以分为几个重要模块：
 - Main function：作为入口承担着各个组件的启动，连接，管理。以Actor-Like的模式协调组件的运行
 - Configuration：配置项的解析，验证，加载
