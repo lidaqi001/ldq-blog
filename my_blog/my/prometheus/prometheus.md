@@ -159,7 +159,6 @@ prometheus_tsdb_compaction_chunk_range_count 780
 
 ---
 > 参考:<br>
----
 
 ### prometheus
 - [Prometheus操作指南](https://github.com/lidaqi001/prometheus-book)
