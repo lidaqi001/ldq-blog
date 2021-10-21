@@ -5,6 +5,8 @@
     ...内容...    
 </details>
 -->
+> ## 2021.10.17 - [安装manjaro常用软件](./my/manjaro/software.md)
+
 > ## 2021.10.17 - [Prometheus监控](./my/prometheus/prometheus.md)
 
 > ## 2021.09.23 - Rabbitmq 

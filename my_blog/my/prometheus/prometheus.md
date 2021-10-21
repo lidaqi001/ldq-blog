@@ -1,5 +1,7 @@
 > ## [**prometheus操作指南**](https://github.com/lidaqi001/prometheus-book)
+
 ---
+
 ## 导航
 > 1) [简介](#简介)
 > 2) [架构](#架构)
@@ -8,7 +10,6 @@
 > 5) [PromQL(prometheus内置数据查询语言)](#PromQL)<br>
 > [参考](#参考)<br>
 > [扩展](#扩展)
-
 
 ---
 
@@ -67,10 +68,10 @@ Prometheus（普罗米修斯）是一套开源的监控&报警&时间序列数�
 > 从存储上来讲所有的监控指标metric都是相同的，但是在不同的场景下这些metric又有一些细微的差异。 <br><br>
 例如，在Node Exporter返回的样本中指标node_load1反应的是当前系统的负载状态，随着时间的变化这个指标返回的样本数据是在不断变化的。而指标node_cpu所获取到的样本数据却不同，它是一个持续增大的值，因为其反应的是CPU的累积使用时间，从理论上讲只要系统不关机，这个值是会无限变大的。<br><br>
 为了能够帮助用户理解和区分这些不同监控指标之间的差异，Prometheus定义了4种不同的指标类型(metric type)：
-- <a href="#Counter">Counter（计数器）</a>
-- <a href="#Gauge">Gauge（仪表盘）</a>
-- <a href="#Histogram">Histogram（直方图）</a>
-- <a href="#Summary">Summary（摘要）</a>
+- `Counter`（计数器）
+- `Gauge`（仪表盘）
+- `Histogram`（直方图）
+- `Summary`（摘要）
 
 在Exporter返回的样本数据中，其注释中也包含了该样本的类型。例如：
 ```
@@ -79,7 +80,7 @@ Prometheus（普罗米修斯）是一套开源的监控&报警&时间序列数�
 node_cpu{cpu="cpu0",mode="idle"} 362812.7890625
 ```
 
-- <a id="Counter"></a>`Counter`：只增不减的计数器
+- `Counter`：只增不减的计数器
 
 Counter类型的指标其工作方式和计数器一样，只增不减（除非系统发生重置）。常见的监控指标，如http_requests_total，node_cpu都是Counter类型的监控指标。 一般在定义Counter类型指标的名称时推荐使用_total作为后缀。
 
@@ -93,7 +94,7 @@ Counter是一个简单但有强大的工具，例如我们可以在应用程序�
 
     topk(10, http_requests_total)
 
-- <a id="Gauge"></a>`Gauge`：可增可减的仪表盘
+- `Gauge`：可增可减的仪表盘
 
 与Counter不同，Gauge类型的指标侧重于反应系统的当前状态。因此这类指标的样本数据可增可减。常见指标如：node_memory_MemFree（主机当前空闲的内容大小）、node_memory_MemAvailable（可用内存大小）都是Gauge类型的监控指标。
 
@@ -108,7 +109,7 @@ node_memory_MemFree
 
     predict_linear(node_filesystem_free{job="node"}[1h], 4 * 3600)
 
-- <a id="Histogram"></a><a id="Summary"></a>使用 `Histogram` 和 `Summary` 分析数据分布情况
+- 使用 `Histogram` 和 `Summary` 分析数据分布情况
 
 除了Counter和Gauge类型的监控指标以外，Prometheus还定义了Histogram和Summary的指标类型。Histogram和Summary主用用于统计和分析样本的分布情况。
 
@@ -178,6 +179,7 @@ prometheus_tsdb_compaction_chunk_range_count 780
 ### Kubernetes(k8s)
 - [Prometheus监控Kubernetes集群](https://www.cnblogs.com/rexcheny/p/10675891.html)
 - [Prometheus在Kubernetes下的服务发现机制](https://www.cnblogs.com/YaoDD/p/11391310.html)
+
 ---
 
 # `扩展`
