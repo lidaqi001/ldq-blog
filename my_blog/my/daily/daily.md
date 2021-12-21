@@ -5,6 +5,31 @@
     ...内容...    
 </details>
 -->
+> ## 2021.09.23 - 解决nginx转发websocket请求连接失败的问题 
+<details>
+    <summary><mark><font color=darkred>查看更多</font></mark></summary>
+
+- 修改对应的nginx conf文件
+```
+server
+{
+    ···
+    
+    location /
+    {
+        // 加上下面这两行代码，websocket连接就可以了
+        // 没有深入探究，可能是转发时把部分头信息丢了？
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_pass http://127.0.0.1:8000;
+    }
+    
+   ···
+}
+```
+</details>
+
+
 > ## 2021.10.17 - [安装manjaro常用软件](./my/manjaro/software.md)
 
 > ## 2021.10.17 - [Prometheus监控](./my/prometheus/prometheus.md)
