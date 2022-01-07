@@ -5,6 +5,8 @@
     ...内容...    
 </details>
 -->
+> ## 2022.01.07 - [配置nginx文件服务下载](http://note.youdao.com/noteshare?id=2ba9623ee8621809d2541f232f1f5726&sub=857211A2DB25449582074136DD924FA1)
+    
 > ## 2021.09.23 - 解决nginx转发websocket请求连接失败的问题 
 <details>
     <summary><mark><font color=darkred>查看更多</font></mark></summary>
