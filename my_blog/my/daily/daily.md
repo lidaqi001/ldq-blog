@@ -5,6 +5,28 @@
     ...内容...    
 </details>
 -->
+
+> ## 2022.07.20 - linux系统下，进程莫名被进程杀掉
+<details>
+    <summary><mark><font color=darkred>查看更多</font></mark></summary>
+
+- 原因：
+
+  - 进程被系统杀掉，内存不够
+    - `free -lm` 命令查看实际内存大小（实际和虚拟）
+  - 排查过程
+    - 一直以为是程序问题，排查了代码没有发现异常，而且日志、命令行输出也全部没有。
+    - 每次服务连接失败时，`ps -ef | grep 进程名` 查看进程都没有找到，通过网上搜索可能是linux系统把进程杀掉了。
+    - 查看被系统杀掉进程日志的命令：  `egrep -i -r 'killed process' /var/log` （只有root权限才可以查看），
+    - 发现确实有被杀掉的进程，而且时间也对的上，到这知道原来是linux杀掉的进程。
+    - 后来通过了解，linux 会检测内存的变化，如果发现内存使用过大的进程，会被杀掉，保护系统正常运行。
+
+- 解决：
+
+  - [设置虚拟内存](./my/linux/swap.md)
+
+</details>
+
 > ## 2022.01.07 - [配置nginx文件服务下载](http://note.youdao.com/noteshare?id=2ba9623ee8621809d2541f232f1f5726&sub=857211A2DB25449582074136DD924FA1)
     
 > ## 2021.09.23 - 解决nginx转发websocket请求连接失败的问题 
