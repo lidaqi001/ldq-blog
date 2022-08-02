@@ -5,6 +5,37 @@
     ...内容...    
 </details>
 -->
+> ## 2022.08.02 - `sync.Pool`（内存池） golang性能提升利器
+<details>
+    <summary><mark><font color=darkred>查看更多</font></mark></summary>
+
+## [详解](./my/golang/sync_pool)
+
+## sync.pool是什么呢
+
+sync.pool是Go1.3发布的一个特性，它是一个临时对象存储池
+
+## 为什么需要sync.pool呢
+
+- `简单总结 =》 对象复用`
+    - 代码中频繁的创建对象和回收内存，造成了GC的压力；
+    - 而sync.pool可以缓存对象暂时不用但是之后会用到的对象，并且不需要重新分配内存；
+    - 这在很大程度上降低了GC的压力，并且提高了程序的性能
+
+## 遇到的问题
+
+- golang `-race` 与 `sync.Pool` 冲突
+- 环境：
+    - 在编译时启用数据竞争检测（race data check） `-race`
+      ```shell
+      go build -race main.go
+      ```
+- 问题：
+    - `sync.Pool`一直在创建资源（New）
+- 为什么产生？
+    - `寻找答案中。。。`
+
+</details>
 
 > ## 2022.07.20 - linux系统下，进程莫名被进程杀掉
 <details>
@@ -12,28 +43,29 @@
 
 - 原因：
 
-  - 进程被系统杀掉，内存不够
-    - `free -lm` 命令查看实际内存大小（实际和虚拟）
-  - 排查过程
-    - 一直以为是程序问题，排查了代码没有发现异常，而且日志、命令行输出也全部没有。
-    - 每次服务连接失败时，`ps -ef | grep 进程名` 查看进程都没有找到，通过网上搜索可能是linux系统把进程杀掉了。
-    - 查看被系统杀掉进程日志的命令：  `egrep -i -r 'killed process' /var/log` （只有root权限才可以查看），
-    - 发现确实有被杀掉的进程，而且时间也对的上，到这知道原来是linux杀掉的进程。
-    - 后来通过了解，linux 会检测内存的变化，如果发现内存使用过大的进程，会被杀掉，保护系统正常运行。
+    - 进程被系统杀掉，内存不够
+        - `free -lm` 命令查看实际内存大小（实际和虚拟）
+    - 排查过程
+        - 一直以为是程序问题，排查了代码没有发现异常，而且日志、命令行输出也全部没有。
+        - 每次服务连接失败时，`ps -ef | grep 进程名` 查看进程都没有找到，通过网上搜索可能是linux系统把进程杀掉了。
+        - 查看被系统杀掉进程日志的命令：  `egrep -i -r 'killed process' /var/log` （只有root权限才可以查看），
+        - 发现确实有被杀掉的进程，而且时间也对的上，到这知道原来是linux杀掉的进程。
+        - 后来通过了解，linux 会检测内存的变化，如果发现内存使用过大的进程，会被杀掉，保护系统正常运行。
 
 - 解决：
 
-  - [设置虚拟内存](./my/linux/swap.md)
+    - [设置虚拟内存](./my/linux/swap.md)
 
 </details>
 
 > ## 2022.01.07 - [配置nginx文件服务下载](http://note.youdao.com/noteshare?id=2ba9623ee8621809d2541f232f1f5726&sub=857211A2DB25449582074136DD924FA1)
-    
-> ## 2021.09.23 - 解决nginx转发websocket请求连接失败的问题 
+
+> ## 2021.09.23 - 解决nginx转发websocket请求连接失败的问题
 <details>
     <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
 - 修改对应的nginx conf文件
+
 ```
 server
 {
@@ -51,6 +83,7 @@ server
    ···
 }
 ```
+
 </details>
 
 
@@ -58,7 +91,7 @@ server
 
 > ## 2021.10.17 - [Prometheus监控](./my/prometheus/prometheus.md)
 
-> ## 2021.09.23 - Rabbitmq 
+> ## 2021.09.23 - Rabbitmq
 <details>
     <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
@@ -80,6 +113,7 @@ server
 - go test 命令，会自动读取源码目录下面名为 *_test.go 的文件，生成并运行测试用的可执行文件。
 
 这里介绍几个常用的参数：
+
 ```
 -bench regexp : 性能测试，支持表达式对测试函数进行筛选。`-bench .` 则是对所有的benchmark函数测试;
 -run regexp : 只运行 regexp 匹配的函数，例如 `-run=Array` 那么就执行包含有 Array 开头的函数；
@@ -88,6 +122,7 @@ server
 -v : 显示测试的详细信息;
 -count=1 : 禁用测试缓存; 
 ```
+
 > 参考文章
 [go Test Benchmark 性能测试](https://blog.csdn.net/luolianxi/article/details/105458889)
 </details>
@@ -101,6 +136,7 @@ server
 - 这里举一个例子:
 
 `Test/A`
+
 ```
 package A
 
@@ -108,11 +144,13 @@ import "Test/B"
 ```
 
 `Test/B`
+
 ```
 package B
 
 import "Test/A"
 ```
+
 - 这里发生了什么?
     - A导入B
     - B又导入A
@@ -136,7 +174,7 @@ import "Test/A"
 - /etc/rc.d/rc.local 是一个文件（这个文件用于用户自定义开机启动程序）
     - 也就是说用户可以把需要开机启动的命令、运行可执行脚本的命令写入这个文件，这样就可以在系统启动时自动执行这个命令
     - 比如把一个shell脚本的完整路径写入这个文件，那这个shell脚本就会在开机后自动执行
-    
+
 - 为了方便理解，这里我们放一个详细介绍Linux启动流程的链接
     - [进去看看](./my/knowledgePoint/linuxStartProcessFlow)
 
@@ -145,7 +183,7 @@ import "Test/A"
 > ## 2021.01.06 - [安装supervisor（及产生的问题）](./interview/linux?id=安装Supervisor)
 
 > ## 2020.10.29 - v2rayN报错
-    
+
 <details>
   <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
@@ -204,17 +242,15 @@ import "Test/A"
 
 - 无分类地址 CIDR
 
-    正因为 IP 分类存在许多缺点，所以后面提出了无分类地址的方案，即 CIDR。
+  正因为 IP 分类存在许多缺点，所以后面提出了无分类地址的方案，即 CIDR。
 
-    这种方式不再有分类地址的概念，32 比特的 IP 地址被划分为两部分，前面是网络号，后面是主机号。
+  这种方式不再有分类地址的概念，32 比特的 IP 地址被划分为两部分，前面是网络号，后面是主机号。
 
-    “ 怎么划分网络号和主机号的呢？
-    ”
-    表示形式 a.b.c.d/x，其中 /x 表示前 x 位属于网络号， x 的范围是 0 ~ 32，这就使得 IP 地址更加具有灵活性。
+  “ 怎么划分网络号和主机号的呢？ ” 表示形式 a.b.c.d/x，其中 /x 表示前 x 位属于网络号， x 的范围是 0 ~ 32，这就使得 IP 地址更加具有灵活性。
 
-    比如 10.100.122.2/24，这种地址表示形式就是 CIDR，/24 表示前 24 位是网络号，剩余的 8 位是主机号。
+  比如 10.100.122.2/24，这种地址表示形式就是 CIDR，/24 表示前 24 位是网络号，剩余的 8 位是主机号。
 
-    ![cidr](../../images/cidr.jpg)
+  ![cidr](../../images/cidr.jpg)
 
 </details>
 
@@ -224,7 +260,7 @@ import "Test/A"
   <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
 - firewalld进程启动不了（报错超时）[参考链接](https://blog.csdn.net/crynono/article/details/76132611)
-    
+
     - 报错信息如下
     ```
     [root@VM_0_6_centos ~]#  systemctl status firewalld 
@@ -263,11 +299,10 @@ import "Test/A"
 <details>
   <summary><mark><font color=darkred>查看更多</font></mark></summary>
 
-- 问题产生：
-    DNS服务器地址失效
-        
-- 解决：
-    更换新的DNS服务器地址
+- 问题产生： DNS服务器地址失效
+
+- 解决： 更换新的DNS服务器地址
+
 ```
 /etc/resolv.conf // 它是DNS客户机配置文件，用于设置DNS服务器的IP地址及DNS域名
 nameserver 202.102.192.68
