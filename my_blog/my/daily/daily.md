@@ -5,6 +5,80 @@
     ...内容...    
 </details>
 -->
+
+> ## 2022.10.19 - `sync.Map` 使用注意事项
+<details>
+    <summary><mark><font color=darkred>查看更多</font></mark></summary>
+
+## 介绍
+
+- 一句话总结：`为并发安全而生的map类型（原生map不支持并发读写）`
+    ```
+    sync.Map类似于一个map[interface{}]interface{}的map结构，但不同之处在于它本身实现了并发安全
+    
+    在没有并发需求的时候，比如局部变量，推荐都用map替代sync.Map.这么做有几点好处：
+      1、类型安全，局部变量更好控制类型，甚至可以定义特定类型，无需assert强转。var s = x.(T)
+      2、读写都可控，不涉及到锁，性能更好
+    
+    适用场景：
+      1、多个goroutine并发对同一个map读写操作，sync.Map并发安全，且性能优于原生map+互斥锁 或读写锁
+      2、读多写少，一次写入，多次读取
+    ```
+
+## 使用建议
+
+- 避免多层`sync.Map`嵌套使用，如：`sync.Map<key,sync.Map>`
+    - 为什么？
+        - 1：增加维护难度
+        - 2：每层value都需要强转，类型安全问题
+
+## 遇到的问题：
+
+- 操作原子性
+    - 多goroutine同时操作一个sync.Map，会产生多次写入的问题
+    - sync.Map Load/Store 只是并发安全（不会 panic），但并不保证操作的原子性
+      ```
+        代码示例： 
+        ··· 
+        var amap sync.Map 
+        for i := 0; i < 100; i++ { 
+            go func() { 
+              tmp, ok := amap.Load("only")
+              if ok { 
+                  fmt.Println("已有值：", tmp)
+              } else { 
+                val := rand.Intn(10000)
+                amap.Store("only", val)
+                fmt.Println("写入值：", val)
+              } 
+            }()
+        } 
+        time.Sleep(time.Second * 10)
+      ```
+    - 怎么解决： `使用LoadOrStore方法存储`
+        - 细节： `sync.Map中的tryLoadOrStore是原子操作，LoadOrStore使用其实现`
+      ```
+      代码示例：
+      ···
+      var amap sync.Map
+      for i := 0; i < 100; i++ {
+          go func() {
+              val := rand.Intn(10000)
+              tmp, loaded := amap.LoadOrStore("only",val)
+              if loaded {
+                  fmt.Println("已有值：", tmp)
+              } else {
+                  fmt.Println("写入值：", val)
+              }
+          }()
+      }
+      time.Sleep(time.Second * 10)
+      ```
+
+引用文章：https://zhuanlan.zhihu.com/p/402173031
+
+</details>
+
 > ## 2022.08.02 - `sync.Pool`（内存池） golang性能提升利器
 <details>
     <summary><mark><font color=darkred>查看更多</font></mark></summary>
@@ -17,23 +91,29 @@ sync.pool是Go1.3发布的一个特性，它是一个临时对象存储池
 
 ## 为什么需要sync.pool呢
 
-- 一句话总结 =》 `保存和复用临时对象，减少内存分配，降低GC压力`
+- 一句话总结：`保存和复用临时对象，减少内存分配，降低GC压力`
     - 代码中频繁的创建对象和回收内存，造成了GC的压力；
     - 而sync.pool可以缓存对象暂时不用但是之后会用到的对象，并且不需要重新分配内存；
     - 这在很大程度上降低了GC的压力，并且提高了程序的性能
 
+## 注意点
+
+- 每次 `Get` 获取的对象，使用前需要重置
+    - 注意将使用完的对象 `Put` 回对象池
+        - 有 `Get` , `Put` 才是一个完整的生命周期，如果只取不存，那这组件不是白用了嘛
+
 ## 遇到的问题
 
 - golang `-race` 与 `sync.Pool` 冲突
-- 环境：
-    - 在编译时启用数据竞争检测（race data check） `-race`
-      ```shell
-      go build -race main.go
-      ```
-- 问题：
-    - `sync.Pool`一直在创建资源（New）
-- 为什么产生？
-    - `寻找答案中。。。`
+    - 环境：
+        - 在编译时启用数据竞争检测（race data check） `-race`
+          ```shell
+          go build -race main.go
+          ```
+    - 问题：
+        - `sync.Pool`一直在创建资源（New）
+    - 为什么产生？
+        - `寻找答案中。。。`
 
 </details>
 
