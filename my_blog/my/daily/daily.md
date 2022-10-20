@@ -35,7 +35,10 @@
 ## 遇到的问题：
 
 - 操作原子性
-    - 多goroutine同时操作一个sync.Map，会产生多次写入的问题
+    - 前置条件
+        - `多核心并发时`
+        - `runtime.GOMAXPROCS(1)`单核没有出现该问题
+    - `多核并发`操作同一个sync.Map，会产生多次写入的问题
     - sync.Map Load/Store 只是并发安全（不会 panic），但并不保证操作的原子性
       ```
         代码示例： 
