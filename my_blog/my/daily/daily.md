@@ -11,6 +11,7 @@
     <summary><mark><font color=darkred>查看更多</font></mark></summary>
     
 ```
+    
 // 少于1024双倍扩容
 // 大于1024
     (长度)*(1.25倍扩容，批量append时不乘该值)*(元素类型大小，如int64为8byte)
