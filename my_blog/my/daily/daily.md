@@ -9,7 +9,7 @@
 > ## 2022.12.02 - `slice` 切片扩容机制
 <details>
     <summary><mark><font color=darkred>查看更多</font></mark></summary>
-    
+
 - 少于1024双倍扩容
 - 大于1024
     - (长度)*(1.25倍扩容，批量append时不乘该值)*(元素类型大小，如int64为8byte)
@@ -22,7 +22,7 @@
     
 - 批量append
   - 1025 * 8 = 8200 查表 9472/8 = 1184
-    
+
 </details>
 
 > ## 2022.10.19 - `sync.Map` 使用注意事项
